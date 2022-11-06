@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.button {
+    max-width: 200px;
+    width: fit-content;
+
+
+    background: cornflowerblue;
+    color: white;
+    border-radius: 5px;
+
+    padding: 10px 15px;
+}
+
+.input {
+    width: 100%;
+    border: cornflowerblue 2px solid;
+    border-radius: 7px;
+
+    padding: 10px 15px;
+}
+
+.error {
+    user-select: none;
+    color: red;
+
+    padding: 10px 15px;
+}
+
+.summary {
+    user-select: none;
+    cursor: pointer;
+}
