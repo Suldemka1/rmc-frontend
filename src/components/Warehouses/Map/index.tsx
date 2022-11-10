@@ -7,7 +7,7 @@ const Map = () => {
     const renderRepublicBoundaries = polygons.map(item => {
 
         return (
-            <Link to="/"><GeoJSON
+            <GeoJSON
                 key={item.id}
                 // @ts-ignore
                 data={item}
@@ -17,17 +17,28 @@ const Map = () => {
                     fillColor: "#1a1d62",
                     fillOpacity: 1
                 })}
-                className="hover:fill-white"
+                className="hover:fill-white hover:transition hover:ease-in-out hover:duration-400"
+                onEachFeature={() => {
+                    console.log(item.properties.description)
+                }}
             >
-                <Tooltip sticky>{item.properties.description}</Tooltip>
+                 <Tooltip sticky>{item.properties.description}</Tooltip>
             </GeoJSON>
-            </Link>
         )
 
     })
     return (
         <div
-            className=" max-h-[600px] max-w-full w-full h-full border-2 border-black rounded">
+            className="h-fit border-2 border-black rounded">
+            <div className="absolute flex flex-col gap-3 text-center mt-5 ml-10" style={{zIndex: 400}}>
+                <Link className="w-full h-full bg-gray-600 rounded py-2 px-3 text-gray-300 items-center
+                              cursor-pointer select-none peer-checked:bg-gray-800" to="/">г. Кызыл
+                </Link>
+                <Link className="w-full h-full bg-gray-600 rounded py-2 px-3 text-gray-300 items-center
+                              cursor-pointer select-none peer-checked:bg-gray-800" to="/">г. Ак-Довурак
+                </Link>
+            </div>
+
             <MapContainer center={[51.8, 94.15]}
                           zoom={7}
                           zoomControl={false}
@@ -35,8 +46,7 @@ const Map = () => {
                           doubleClickZoom={false}
                           attributionControl={false}
                           dragging={false}
-
-                          className="w-full h-full">
+                          className="min-h-[600px]">
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

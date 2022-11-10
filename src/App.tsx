@@ -21,7 +21,7 @@ const router = createBrowserRouter(createRoutesFromElements(
         <Route path="/news/:id" element={<PostPage />} />
 
         <Route path="/warehouses" element={<Warehouses />} />
-        <Route path="/warehouses/:slug" element={<Warehouses />} />
+        {/* <Route path="/warehouses/:slug" element={<Warehouses />} /> */}
         <Route path="/warehouses/:id" element={<WarehousePage />} />
         <Route path="/contacts" element={<Contacts/>}/>
         <Route path="/signin" element={<SignIn />} />

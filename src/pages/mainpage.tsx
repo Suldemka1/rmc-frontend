@@ -1,11 +1,11 @@
 import React from 'react';
 import StandartLayout from "../layouts/StandartLayout";
+import Map from "../components/Warehouses/Map";
 
 const Mainpage = () => {
     return (
         <StandartLayout>
-            <img src="/favicon.ico" className="w-full h-1/3" />
-
+            <Map />
         </StandartLayout>
     );
 };
