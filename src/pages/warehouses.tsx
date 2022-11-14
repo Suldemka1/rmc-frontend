@@ -1,9 +1,10 @@
 import React from 'react';
 import StandartLayout from "../layouts/StandartLayout";
 import {useAppDispatch, useAppSelector} from "../hooks/hooks";
-import Map from "../components/Warehouses/Map";
+import Map from "../components/Map";
 import List from "../components/Warehouses/List";
 import Menu from "../components/Warehouses/Menu";
+import RegionWarehousesContainer from '../components/Warehouses/RegionWarehouses/RegionWarehousesContainer';
 
 interface IChecked {
     map: boolean
@@ -21,6 +22,7 @@ const Warehouses = () => {
 
             {state.map && <Map/>}
             {state.list && <List/>}
+            {state.region && <RegionWarehousesContainer/>}
 
         </StandartLayout>
     );

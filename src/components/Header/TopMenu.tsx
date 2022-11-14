@@ -19,7 +19,7 @@ const TopMenu = () => {
                 })
             }
 
-            {
+            {/* {
                 state.isAuth
                     ?
                     <li>
@@ -33,7 +33,7 @@ const TopMenu = () => {
                             Авторизация
                         </Link>
                     </li>
-            }
+            } */}
         </menu>
     );
 };

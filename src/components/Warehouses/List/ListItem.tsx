@@ -18,7 +18,7 @@ const ListItem = () => {
                     </div>
 
                     <div>
-                        <Link to="/warehouses/1">Перейти</Link>
+                        <Link to="/warehouses/1/1">Перейти</Link>
                     </div>
                 </div>
 

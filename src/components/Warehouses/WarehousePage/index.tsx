@@ -35,7 +35,7 @@ const WarehousePage = () => {
                             </div>
                         </details>
                     </div>
-                    <div className="">
+                    {/* <div className="">
                         <details>
                             <summary className="summary">Дополнительные услуги</summary>
                             <div className="text-lg">
@@ -46,7 +46,7 @@ const WarehousePage = () => {
                                 </ul>
                             </div>
                         </details>
-                    </div>
+                    </div> */}
 
                     <div>
                         <details>

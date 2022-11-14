@@ -1,9 +1,15 @@
 import React from 'react';
 
-const Banner = () => {
+interface IBanner {
+    id: number
+    title: string
+    src: string
+}
+
+const Banner = (params : IBanner) => {
     return (
         <div>
-            <img src="/favicon.ico" className="w-full"/>
+            <img src={params.src} className="w-full"/>
         </div>
     );
 };

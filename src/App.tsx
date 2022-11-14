@@ -12,6 +12,7 @@ import Account from "./pages/account";
 import AccountSettings from "./components/Account/AccountSettings";
 import AccountAppeals from "./components/Account/AccountAppeals";
 import AccountNewAppeal from "./components/Account/AccountNewAppeal";
+import RegionWarehoueses from './components/Warehouses/RegionWarehouses';
 
 const router = createBrowserRouter(createRoutesFromElements(
     <Route>
@@ -21,8 +22,8 @@ const router = createBrowserRouter(createRoutesFromElements(
         <Route path="/news/:id" element={<PostPage />} />
 
         <Route path="/warehouses" element={<Warehouses />} />
-        {/* <Route path="/warehouses/:slug" element={<Warehouses />} /> */}
-        <Route path="/warehouses/:id" element={<WarehousePage />} />
+        <Route path="/warehouses/:id" element={<RegionWarehoueses />} />
+        <Route path="/warehouses/:id/:id" element={<WarehousePage />} />
         <Route path="/contacts" element={<Contacts/>}/>
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignIn />} />
