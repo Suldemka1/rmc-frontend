@@ -7,15 +7,11 @@ import {
   Tooltip,
 } from "react-leaflet";
 import polygons from "../../data.json";
-import { Link } from "react-router-dom";
-//@ts-ignore
-function onEachFeature(feature, layer) {
-  layer.on({
-    click: console.log('fuck you')
-  })
-}
+import { Link, useNavigate } from "react-router-dom";
 
 const Map = () => {
+  const navigate = useNavigate()
+
   const renderRepublicBoundaries = polygons.map((item) => {
     return (
       <GeoJSON
@@ -29,22 +25,11 @@ const Map = () => {
           fillOpacity: 1,
         })}
         className="hover:fill-white hover:transition hover:ease-in-out hover:duration-400 outline-none border-none"
-        onEachFeature={onEachFeature}
+        eventHandlers={{
+          click: () => navigate(`/warehouses/${item.id}`)
+        }}
       >
         <Tooltip sticky>{item.properties.description}</Tooltip>
-        <Popup>
-          <div className="flex flex-col gap-3">
-            {/* <div className="text-md">
-              <h1 className="">Количество складов 2</h1>
-              <p>Примерное количество угля 10 тонн</p>
-            </div> */}
-            <div className="text-center text-[18px] border-2 border-blue-800 py px-2 rounded-md">
-              <Link to={`/warehouses/${item.id}`} className="text-blue-900">
-                Склады района
-              </Link>
-            </div>
-          </div>
-        </Popup>
       </GeoJSON>
     );
   });

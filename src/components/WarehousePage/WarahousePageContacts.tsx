@@ -1,11 +1,11 @@
 import React from 'react';
 import {MdEmail, MdPhone} from "react-icons/md";
 
-const WarahousePageContacts = () => {
+const WarahousePageContacts = ({region, Address}: any) => {
     return (
         <div className="flex flex-col gap-3 text-lg">
             <h1 className="text-2xl">Контактная информация склада</h1>
-            <div>667000, Улуг-Хемский кожуун, город Шагонар, улица Ленина 1</div>
+            <div>{Address.code}, {region.title}, {Address.region}, улица {Address.street}, дом {Address.house}</div>
             <div>
                 <div className="flex items-center gap-2">
                     <MdEmail className="w-7 h-7"/>

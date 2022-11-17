@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { IChildren } from "../../../../models/IChildren";
+import { IChildren } from "../../../models/IChildren"
 import RegionWarehousesListItem from "./RegionWarehousesListItem";
 
 const RegionWarehousesList : FC<IChildren> = ({children} : IChildren) => {

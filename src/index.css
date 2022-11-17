@@ -4,6 +4,7 @@
 
 .button {
     max-width: 200px;
+    max-height: 44px;
     width: fit-content;
 
 
