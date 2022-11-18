@@ -7,12 +7,14 @@ export interface IWarehouse {
   owner: string;
   url: string;
   region: IRegion;
-  Address: IAddress;
-  contacts: [{
-    phone: string;
-    email: string;
-    webSiteUrl: string;
-  }];
+  address: IAddress;
+  contacts: [
+    {
+      phone: string;
+      email: string;
+      webSiteUrl: string;
+    }
+  ];
   brief: {
     id: number;
     lowest_coal_cost: string;
@@ -20,9 +22,16 @@ export interface IWarehouse {
     average_delivery_time: string;
     coal_remainder: string;
   };
+  payment_options: [
+    {
+      option: string;
+    }
+  ];
 }
 
 export interface IWarehouseListItem {
   id: number;
   title: string;
+  owner: string;
+  url: string;
 }

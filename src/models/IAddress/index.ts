@@ -1,8 +1,8 @@
 export interface IAddress {
-  code: string;
+  code?: string;
   region_type?: string;
-  region: string;
-  street: string;
-  house: string;
-  note: string;
+  region?: string;
+  street?: string;
+  house?: string;
+  note?: string;
 }

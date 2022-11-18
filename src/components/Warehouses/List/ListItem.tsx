@@ -9,7 +9,7 @@ const ListItem = ({
   title,
   url,
   region,
-  Address,
+  address,
   contacts,
 }: IWarehouse) => {
   return (
@@ -20,8 +20,8 @@ const ListItem = ({
         </div>
         <div className="p-3">
           <p>
-            {Address?.code}, {region?.title}, {Address?.region}, улица{" "}
-            {Address?.street}, дом {Address?.house}
+            {address?.code}, {region?.title}, {address?.region}, улица{" "}
+            {address?.street}, дом {address?.house}
           </p>
         </div>
         <div className="flex flex-row justify-between items-stretch p-3">

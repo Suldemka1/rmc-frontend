@@ -1,4 +1,3 @@
-import React from "react";
 import StandartLayout from "../layouts/StandartLayout";
 import Map from "../components/Map";
 import PostCard from "../components/Post/PostCard";
@@ -8,6 +7,7 @@ import ResourcesItem from "../components/Resources/ResourcesItem";
 const Mainpage = () => {
   return (
     <StandartLayout>
+     
       <Map />
       <div className="flex gap-5 py-2">
         <PostCard />

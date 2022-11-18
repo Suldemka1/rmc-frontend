@@ -17,9 +17,10 @@ const List: FC<any> = (params: any) => {
               owner={items.owner}
               url={`/warehouses/${item.id}/${items.id}`}
               region={items.region}
-              Address={items.Address}
+              address={items.address}
               contacts={items?.contacts}
               brief={items.brief}
+              payment_options={items.payment_options}
             />
           );
         });

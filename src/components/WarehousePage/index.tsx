@@ -22,22 +22,29 @@ const WarehousePage = () => {
       average_delivery_time: "",
       coal_remainder: "",
     },
-    contacts: [{
-      phone: "",
-      email: "",
-      webSiteUrl: "",
-    }],
+    contacts: [
+      {
+        phone: "",
+        email: "",
+        webSiteUrl: "",
+      },
+    ],
     region: {
       id: 0,
       title: "",
     },
-    Address: {
+    address: {
       code: "",
       region: "",
       street: "",
       house: "",
       note: "",
     },
+    payment_options: [
+      {
+        option: "",
+      },
+    ],
   });
 
   useEffect(() => {
@@ -61,7 +68,7 @@ const WarehousePage = () => {
         <div className="flex flex-col gap-3 text-lg">
           <h1 className="text-2xl">Услуги и оплата</h1>
           <div className="">
-            <details >
+            <details>
               <summary className="summary">Прейскурант цен на уголь</summary>
               <div>
                 <ul>
@@ -77,19 +84,18 @@ const WarehousePage = () => {
           <div>
             <details>
               <summary className="summary">Способы оплаты</summary>
-              <div>
+              <div className="px-3 py-2">
                 <ul>
-                  <li>Наличный рассчет</li>
-                  <li>Безналичный рассчет</li>
-                  <li>Переводом на банковскую карту</li>
-                  <li>По договору</li>
+                  {state.payment_options.map((item, index) => {
+                    return <li key={index} className="">{item.option}</li>;
+                  })}
                 </ul>
               </div>
             </details>
           </div>
         </div>
 
-        <WarahousePageContacts region={state.region} Address={state.Address} />
+        <WarahousePageContacts region={state.region} address={state.address} />
       </div>
 
       <Calculator />

@@ -10,7 +10,7 @@ const RegionWarehoueses = () => {
 
   useEffect(() => {
     fetch(
-      `${process.env.REACT_APP_BASEURL}/api/regions/${params.id}?populate[warehouses][populate][0]=contacts&populate[warehouses][populate][1]=Address&populate=[warehouses][populate][2]=brief&populate[warehouses][populate][3]=region`
+      `${process.env.REACT_APP_BASEURL}/api/regions/${params.id}?populate[warehouses][populate][0]=contacts&populate[warehouses][populate][1]=address&populate=[warehouses][populate][2]=brief&populate[warehouses][populate][3]=region`
     )
       .then((res) => res.json())
       .then((res) => setState(res));
@@ -27,9 +27,10 @@ const RegionWarehoueses = () => {
             owner={item.owner}
             url={`/warehouses/${state.data.id}/${item.id}`}
             region={item.region}
-            Address={item.Address}
+            address={item.address}
             contacts={item.contacts}
             brief={item.brief}
+            payment_options={item.payment_options}
           />
         ))}
       </ul>
