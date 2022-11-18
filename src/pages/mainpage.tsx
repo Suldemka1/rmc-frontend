@@ -9,7 +9,7 @@ const Mainpage = () => {
     <StandartLayout>
      
       <Map />
-      <div className="flex gap-5 py-2">
+      <div className="flex flex-col flex-wrap gap-5 py-2">
         <PostCard />
         <PostCard />
         <PostCard />

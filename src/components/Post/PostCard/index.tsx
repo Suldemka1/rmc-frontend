@@ -12,8 +12,8 @@ const PostCard: FC = () => {
                 <h1>Заголовок новости</h1>
             </div>
 
-            <div id="post-body" className="flex gap-3 p-3">
-                <div>
+            <div id="post-body" className="flex sm:flex-col xs:flex-col md:flex-col lg:flex-row gap-3 p-3">
+                <div className='sm:hidden md:block'>
                     <img src="/favicon.ico" className="min-w-[150px] max-w-[300px]"/>
                 </div>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore

@@ -11,11 +11,11 @@ const StandartLayout: FC<IChildren> = ({children}: IChildren) => {
             <Header/>
 
             <div className="container mx-auto">
-                <div className="flex flex-row">
-                    <div className="w-4/5 py-3 pr-3">
+                <div className="flex flex-row gap-5">
+                    <div className="sm:w-full xs:w-full md:w-4/5 py-3">
                         {children}
                     </div>
-                    <div className="w-1/5 py-3 pl-3">
+                    <div className="sm:hidden md:block sm:w-0 xs:w-0 md:w-1/5 sm:p-0 py-3 pl-3">
                         <Sidebar/>
                     </div>
                 </div>

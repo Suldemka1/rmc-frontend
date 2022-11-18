@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { idText } from "typescript";
 import StandartLayout from "../../layouts/StandartLayout";
 import { IWarehouse } from "../../models/IWarehouse";
 import ListItem from "../Warehouses/List/ListItem";
@@ -16,23 +17,35 @@ const RegionWarehoueses = () => {
       .then((res) => setState(res));
   }, []);
 
+  
+
   return (
     <StandartLayout>
       <ul className="flex flex-col gap-3">
-        {state?.data.warehouses.map((item: IWarehouse) => (
-          <ListItem
-            key={item.id}
-            id={item.id}
-            title={item.title}
-            owner={item.owner}
-            url={`/warehouses/${state.data.id}/${item.id}`}
-            region={item.region}
-            address={item.address}
-            contacts={item.contacts}
-            brief={item.brief}
-            payment_options={item.payment_options}
-          />
-        ))}
+        {
+          state?.data.warehouses.map((item: IWarehouse) => (
+            <ListItem
+              key={item.id}
+              id={item.id}
+              title={item.title}
+              owner={item.owner}
+              url={`/warehouses/${state.data.id}/${item.id}`}
+              region={item.region}
+              address={item.address}
+              contacts={item.contacts}
+              brief={item.brief}
+              payment_options={item.payment_options}
+            />
+          ))
+        
+        // : (
+        //   <div className="flex flex-col gap-5">
+        //     <p>Складов в данном регионе не существует</p>
+            
+        //     <Link to={"/warehouses"} className="button">Назад к складам</Link>
+        //   </div>
+        // )
+      }
       </ul>
     </StandartLayout>
   );

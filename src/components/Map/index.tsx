@@ -42,14 +42,14 @@ const Map = () => {
         <Link
           className="w-full h-full bg-gray-600 rounded py-2 px-3 text-gray-300 items-center
                               cursor-pointer select-none peer-checked:bg-gray-800"
-          to="/"
+          to="/warehouses/1"
         >
           г. Кызыл
         </Link>
         <Link
           className="w-full h-full bg-gray-600 rounded py-2 px-3 text-gray-300 items-center
                               cursor-pointer select-none peer-checked:bg-gray-800"
-          to="/"
+          to="/warehouses/2"
         >
           г. Ак-Довурак
         </Link>
@@ -57,12 +57,16 @@ const Map = () => {
 
       <MapContainer
         center={[51.8, 94.15]}
+        maxBounds={[[54, 99], [49.4, 88]]}
+        
         zoom={7}
+        maxZoom={10}
+        minZoom={7}
         zoomControl={false}
-        scrollWheelZoom={false}
+        scrollWheelZoom={true}
         doubleClickZoom={false}
         attributionControl={false}
-        dragging={false}
+        // dragging={false}
         className="min-h-[600px]"
       >
         <TileLayer

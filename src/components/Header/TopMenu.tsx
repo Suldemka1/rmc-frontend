@@ -6,7 +6,7 @@ const TopMenu = () => {
     const state = useAppSelector(state => state.auth)
 
     return (
-        <menu className="flex flex-row justify-between gap-3 uppercase [&>li]:h-fit">
+        <menu className="sm:hiddre md:flex flex-row justify-between gap-3 uppercase [&>li]:h-fit">
             {
                 menuRoutes.map((item: ITopMenu) => {
                     return (
@@ -38,7 +38,7 @@ const TopMenu = () => {
     );
 };
 
-interface ITopMenu {
+export interface ITopMenu {
     id: number,
     name: string,
     to: string

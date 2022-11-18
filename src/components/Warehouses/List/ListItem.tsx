@@ -24,9 +24,9 @@ const ListItem = ({
             {address?.street}, дом {address?.house}
           </p>
         </div>
-        <div className="flex flex-row justify-between items-stretch p-3">
+        <div className="flex sm:flex-col xs:flex-col md:flex-row justify-between items-stretch p-3">
 
-          <div className="flex flex-row gap-20">
+          <div className="flex sm:flex-col md:flex-row gap-20">
             <details className="flex flex-col gap-2">
               <summary>Контактные данные склада</summary>
               <div className="flex flex-col gap-3 p-3">

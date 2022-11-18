@@ -8,7 +8,7 @@ const Resources : FC<IChildren> = ({children} : IChildren) => {
         <h1>Полезные ресурсы</h1>
       </div>
       
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid sm:grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-4">
       {children}
     </div>
     </div>
