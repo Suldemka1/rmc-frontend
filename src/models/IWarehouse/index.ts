@@ -29,6 +29,16 @@ export interface IWarehouse {
   ];
 }
 
+export interface IWarehousePageItem {
+  brief: {
+    id: number;
+    lowest_coal_cost: string;
+    devivery_cost: string;
+    average_delivery_time: string;
+    coal_remainder: string;
+  };
+}
+
 export interface IWarehouseListItem {
   id: number;
   title: string;

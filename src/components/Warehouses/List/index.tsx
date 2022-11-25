@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { IWarehouse } from "../../../models/IWarehouse";
+import {IWarehouse, IWarehouseListItem} from "../../../models/IWarehouse";
 import ListItem from "./ListItem";
 
 const List: FC<any> = (params: any) => {

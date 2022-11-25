@@ -8,7 +8,7 @@ const Menu: FC = () => {
   const dispatch = useAppDispatch();
 
   return (
-    <div className="flex flex-row gap-5 py-5">
+    <div className="flex sm:flex-col xs:flex-col md:flex-row gap-5 py-5">
       <MenuItem
         id="map"
         name="Карта"

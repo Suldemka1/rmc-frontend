@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Link } from "react-router-dom";
 import { ITopMenu } from "./TopMenu";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
@@ -9,6 +9,9 @@ const MobileMenu = () => {
   const menuState = useAppSelector((state) => state.menu);
   const dispatch = useAppDispatch();
 
+  useEffect(() => {
+    menuState.isOpen ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'unset'
+  }, [menuState])
   return (
     <div>
       <div>
@@ -34,7 +37,7 @@ const MobileMenu = () => {
             onClick={() => dispatch(CloseMenu())}
           />
         </div>
-        <div className="w-full h-full flex flex-col justify-between gap-5 text-lg uppercase py-48 px-5">
+        <div className="w-full h-full flex flex-col justify-start gap-5 text-lg uppercase py-24 px-5">
           {menuRoutes.map((item: ITopMenu) => {
             return (
               <Link
