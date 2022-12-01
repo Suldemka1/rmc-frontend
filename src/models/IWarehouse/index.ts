@@ -6,7 +6,10 @@ export interface IWarehouse {
   title: string;
   owner: string;
   url: string;
-  region: IRegion;
+  region: {
+    id: 0,
+    title: ''
+  };
   address: IAddress;
   contacts: [
     {

@@ -1,6 +1,11 @@
-import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from "react-router-dom";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
 import Mainpage from "./pages/mainpage";
-import News from "./pages/news"
+import News from "./pages/news";
 import Contacts from "./pages/contacts";
 import Warehouses from "./pages/warehouses";
 import SignIn from "./pages/SignIn";
@@ -10,37 +15,42 @@ import Account from "./pages/account";
 import AccountSettings from "./components/Account/AccountSettings";
 import AccountAppeals from "./components/Account/AccountAppeals";
 import AccountNewAppeal from "./components/Account/AccountNewAppeal";
-import RegionWarehoueses from './components/RegionWarehouses';
+import RegionWarehoueses from "./components/RegionWarehouses";
+import { useAppDispatch, useAppSelector } from "./hooks/hooks";
+import { fetchAllWarehouses } from "./store/slices/warehouseSlice";
+import { useEffect } from "react";
 
-const router = createBrowserRouter(createRoutesFromElements(
+const router = createBrowserRouter(
+  createRoutesFromElements(
     <Route>
-        <Route path="/" element={<Mainpage/>}/>
+      <Route path="/" element={<Mainpage />} />
 
-        <Route path="/news" element={<News />} />
-        <Route path="/news/:id" element={<PostPage />} />
+      <Route path="/news" element={<News />} />
+      <Route path="/news/:id" element={<PostPage />} />
 
-        <Route path="/warehouses" element={<Warehouses />} />
-        <Route path="/warehouses/:id" element={<RegionWarehoueses />} />
-        <Route path="/warehouses/:id/:id" element={<WarehousePage />} />
+      <Route path="/warehouses" element={<Warehouses />} />
+      <Route path="/warehouses/:id" element={<RegionWarehoueses />} />
+      <Route path="/warehouses/:id/:id" element={<WarehousePage />} />
 
-        <Route path="/contacts" element={<Contacts/>}/>
+      <Route path="/contacts" element={<Contacts />} />
 
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignIn />} />
+      <Route path="/signin" element={<SignIn />} />
+      <Route path="/signup" element={<SignIn />} />
 
-        <Route path="/account" element={<Account />} />
-        <Route path="/account/settings" element={<AccountSettings />} />
-        <Route path="/account/appeals" element={<AccountAppeals />} />
-        <Route path="/account/newappeal" element={<AccountNewAppeal />} />
-     </Route>
-))
+      <Route path="/account" element={<Account />} />
+      <Route path="/account/settings" element={<AccountSettings />} />
+      <Route path="/account/appeals" element={<AccountAppeals />} />
+      <Route path="/account/newappeal" element={<AccountNewAppeal />} />
+    </Route>
+  )
+);
 
 function App() {
-    return (
-        <>
-            <RouterProvider router={router}/>
-        </>
-    );
+  return (
+    <>
+      <RouterProvider router={router} />
+    </>
+  );
 }
 
 export default App;

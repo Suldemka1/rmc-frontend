@@ -5,30 +5,39 @@ import List from "../components/Warehouses/List";
 import Menu from "../components/Warehouses/Menu";
 import RegionWarehousesContainer from "../components/RegionWarehouses/RegionWarehousesContainer";
 import { fetchAllWarehouses } from "../store/slices/warehouseSlice";
-import { FC, useEffect, useMemo } from "react";
+import React, { FC, useCallback, useEffect } from "react";
 
 interface IChecked {
   map: boolean;
   list: boolean;
 }
 
-const Warehouses : FC<any> = () => {
+const Warehouses: FC = () => {
   const state = useAppSelector((state) => state.map);
   const warehouses = useAppSelector((state) => state.warehouses);
+  const regions = useAppSelector((state) => state.regions)
+
   const dispatch = useAppDispatch();
 
-    useEffect(() => {
-      dispatch(fetchAllWarehouses());
-    }, [dispatch]);
+  const data = useCallback(() => dispatch(fetchAllWarehouses()), []);
+
+  useEffect(() => {
+    // data();
+    // dispatch(listWarehouses())
+    // dispatch(fetchAllWarehouses())
+    
+  }, []);
 
   return (
     <StandartLayout>
       <Menu />
       {state.map && <Map />}
-      {state.list && <List data={warehouses.warehouses} />}
-      {state.region && <RegionWarehousesContainer data={warehouses.warehouses} />}
+      {state.list && (<List data={warehouses.warehouses} />)}
+      {state.region && (
+        <RegionWarehousesContainer data={warehouses.regions} />
+      )}
     </StandartLayout>
   );
 };
 
-export default Warehouses;
+export default React.memo(Warehouses);

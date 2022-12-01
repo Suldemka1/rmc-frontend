@@ -1,51 +1,44 @@
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { idText } from "typescript";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import StandartLayout from "../../layouts/StandartLayout";
-import { IWarehouse } from "../../models/IWarehouse";
+import { getRegionsWarehouses } from "../../store/slices/regionsSlice/services";
 import ListItem from "../Warehouses/List/ListItem";
 
-const RegionWarehoueses = () => {
+const RegionWarehoueses: any = () => {
   const params = useParams();
-  const [state, setState] = useState<any>();
-
+  const regions = useAppSelector((state) => state.regions);
+  const dispatch = useAppDispatch();
+  setTimeout(() => {
+       dispatch(getRegionsWarehouses(params.id));
+       console.log('done')
+       console.log(regions)
+    }, 5000)
   useEffect(() => {
-    fetch(
-      `${process.env.REACT_APP_BASEURL}/api/regions/${params.id}?populate[warehouses][populate][0]=contacts&populate[warehouses][populate][1]=address&populate=[warehouses][populate][2]=brief&populate[warehouses][populate][3]=region`
-    )
-      .then((res) => res.json())
-      .then((res) => setState(res));
-  }, []);
+    
+    
+  }, [regions]);
 
-  
 
   return (
     <StandartLayout>
       <ul className="flex flex-col gap-3">
-        {
-          state?.data.warehouses.map((item: IWarehouse) => (
+        {/* {regions.data.data.warehouses.map((item: any) => {
+          return (
             <ListItem
-              key={item.id}
-              id={item.id}
-              title={item.title}
+              key={item?.id}
+              id={item?.id}
+              title={item?.title}
               owner={item.owner}
-              url={`/warehouses/${state.data.id}/${item.id}`}
+              url={`/warehouses/${params.id}/${item.id}`}
               region={item.region}
               address={item.address}
               contacts={item.contacts}
               brief={item.brief}
               payment_options={item.payment_options}
             />
-          ))
-        
-        // : (
-        //   <div className="flex flex-col gap-5">
-        //     <p>Складов в данном регионе не существует</p>
-            
-        //     <Link to={"/warehouses"} className="button">Назад к складам</Link>
-        //   </div>
-        // )
-      }
+          );
+        })} */}
       </ul>
     </StandartLayout>
   );

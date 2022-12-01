@@ -1,7 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 
 const RegionWarehousesListItem = (params: any) => {
-
   return (
     <div className="border border-black rounded-sm">
       <div className="text-xl text-white font-normal bg-blue-400 p-3">
@@ -15,7 +14,6 @@ const RegionWarehousesListItem = (params: any) => {
         <div className="button">
           <Link to={`/warehouses/${params.id}`}>Перейти к складам</Link>
         </div>
-        
       </div>
     </div>
   );
