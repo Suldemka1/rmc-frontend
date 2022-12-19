@@ -4,7 +4,7 @@ import Map from "../components/Map";
 import List from "../components/Warehouses/List";
 import Menu from "../components/Warehouses/Menu";
 import RegionWarehousesContainer from "../components/RegionWarehouses/RegionWarehousesContainer";
-import { fetchAllWarehouses } from "../store/slices/warehouseSlice";
+import { fetchAllWarehouses, listWarehouses } from "../store/slices/warehouseSlice";
 import React, { FC, useCallback, useEffect } from "react";
 
 interface IChecked {
@@ -22,9 +22,9 @@ const Warehouses: FC = () => {
   const data = useCallback(() => dispatch(fetchAllWarehouses()), []);
 
   useEffect(() => {
-    // data();
-    // dispatch(listWarehouses())
-    // dispatch(fetchAllWarehouses())
+    data();
+    dispatch(listWarehouses())
+    dispatch(fetchAllWarehouses())
     
   }, []);
 
