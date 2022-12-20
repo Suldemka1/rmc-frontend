@@ -4,7 +4,8 @@ export const fetchAllWarehouses: any = createAsyncThunk(
 	"warehouses/fetchAllWarehouses",
 	async () => {
 		const response = await fetch(`${process.env.REACT_APP_BASEURL}/api/warehouses?populate=*`)
-			.then((res) => res.json());
+			.then((res) => res.json())
+			.then((res) => res.data);
 		console.log("get warehouses");
 		console.log(response);
 		return await response;

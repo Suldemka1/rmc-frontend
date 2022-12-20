@@ -14,6 +14,10 @@ const Map = () => {
 		dispatch(fetchAllWarehouses())
 	}, []);
 
+	useEffect(() => {
+		console.log(warehouses.warehouses.data)
+	}, []);
+
 
 	return (
 		<div className="h-fit border-2 border-black rounded">
@@ -57,7 +61,7 @@ const Map = () => {
 					opacity={0}
 				/>
 
-				<WarehousesOnMap warehouses={warehouses.warehouses}/>
+				<WarehousesOnMap warehouses={warehouses.warehouses.data}/>
 				<RepublicPolygons/>
 			</MapContainer>
 		</div>
