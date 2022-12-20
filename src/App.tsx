@@ -8,9 +8,9 @@ import Mainpage from "./pages/mainpage";
 import News from "./pages/news";
 import Contacts from "./pages/contacts";
 import Warehouses from "./pages/warehouses";
-import WarehousePage from "./pages/warehouses";
-import RegionWarehousesList from "./components/RegionWarehousesList";
 import NewsPage from "./pages/news/NewsPage";
+import RegionWarehouses from "./pages/warehouses/region-warehouses";
+import WarehousePage from "./pages/warehouses/warehouse-page";
 
 
 const router = createBrowserRouter(
@@ -22,7 +22,7 @@ const router = createBrowserRouter(
       <Route path="/news/:id" element={<NewsPage />} />
 
       <Route path="/warehouses" element={<Warehouses />} />
-      <Route path="/warehouses/:id" element={<RegionWarehousesList />} />
+      <Route path="/warehouses/:id" element={<RegionWarehouses />} />
       <Route path="/warehouses/:id/:id" element={<WarehousePage />} />
 
       <Route path="/contacts" element={<Contacts />} />

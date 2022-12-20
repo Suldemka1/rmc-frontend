@@ -1,6 +1,6 @@
 import {FC} from "react";
 import {IRegionWithWarehousesCount} from "../../models/IRegion";
-import RegionWarehousesItem from "./RegionWarehousesItem";
+import RegionWarehousesCard from "./RegionWarehousesCard";
 
 const RegionWarehouses: FC<any> = (params: any) => {
 	console.log(params.data)
@@ -8,7 +8,7 @@ const RegionWarehouses: FC<any> = (params: any) => {
 		<div className="flex flex-col gap-4">
 			{params.regions.data.map((item: IRegionWithWarehousesCount) => {
 				return (
-					<RegionWarehousesItem
+					<RegionWarehousesCard
 						key={item.id}
 						id={item.id}
 						title={item.title}

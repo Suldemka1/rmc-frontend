@@ -13,6 +13,12 @@ export interface IPaymentOption {
 	option: string
 }
 
+export interface ISchedule {
+	id: number;
+	day: string;
+	time: string;
+}
+
 export interface IWarehouseCard {
 	id: number;
 	title: string;
@@ -23,6 +29,7 @@ export interface IWarehouseCard {
 }
 
 export interface IWarehouse extends IWarehouseCard {
+	schedule: [ISchedule] | null | undefined;
 	owner: string;
 	brief: IBrief;
 	payment_options: [IPaymentOption];

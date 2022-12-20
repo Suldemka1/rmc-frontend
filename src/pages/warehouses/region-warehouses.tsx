@@ -1,9 +1,9 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
+import ListItem from "../../components/Warehouses/List/ListItem";
 import StandartLayout from "../../layouts/StandartLayout";
-import ListItem from "../Warehouses/List/ListItem";
 
-const RegionWarehouesesList: any = () => {
+const RegionWarehouses = () => {
 	const [state, setState] = useState<any>({});
 	const params = useParams();
 
@@ -17,7 +17,6 @@ const RegionWarehouesesList: any = () => {
 			.finally(() => {
 				console.log('done')
 			})
-
 	}, []);
 
 	return (
@@ -41,4 +40,4 @@ const RegionWarehouesesList: any = () => {
 	);
 };
 
-export default RegionWarehouesesList;
+export default RegionWarehouses;

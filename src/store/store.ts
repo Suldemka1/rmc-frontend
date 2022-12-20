@@ -4,6 +4,7 @@ import authSliceReducer from "./slices/authSlice";
 import regionsSliceReducer from './slices/regionsSlice'
 import warehouseSliceReducer from "./slices/warehouseSlice";
 import menuSliceReducer from "./slices/menuSlice";
+import newsSliceReducer from "./slices/newsSlice";
 
 export const store = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ export const store = configureStore({
     auth: authSliceReducer,
     regions: regionsSliceReducer,
     warehouses: warehouseSliceReducer,
-    menu: menuSliceReducer
+    menu: menuSliceReducer,
+    news: newsSliceReducer
   },
 });
 

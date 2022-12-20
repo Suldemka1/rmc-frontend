@@ -1,15 +1,15 @@
-import { createSlice} from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 import {IWarehouse} from "../../../models/IWarehouse";
-import { fetchAllWarehouses} from "./services";
+import {fetchAllWarehouses} from "./services";
 
 interface IInitialState {
-	warehouses?: [IWarehouse] | null;
+	warehouses: { data: [IWarehouse] | null | undefined} ;
 	status: string;
 	error: string;
 }
 
 const initialState: IInitialState = {
-	warehouses: null,
+	warehouses: {data: null},
 	status: "",
 	error: "",
 };
@@ -24,8 +24,8 @@ const warehouseSlice = createSlice({
 		[fetchAllWarehouses.pending]: (state, action) => {
 			state.status = "pending";
 		},
-		[fetchAllWarehouses.fulfilled]: (state, action: {payload: any}) => {
-			state.warehouses = action.payload;
+		[fetchAllWarehouses.fulfilled]: (state, action: { payload: any }) => {
+			state.warehouses.data = action.payload;
 		},
 		[fetchAllWarehouses.rejected]: (state, action) => {
 			state.status = "rejected";

@@ -6,7 +6,6 @@ import RegionWarehousesListItem from "./RegionWarehousesList/RegionWarehousesLis
 const RegionWarehousesContainer: FC<any> = (params: any) => {
   const data = params.data.data;
   return (
-    <div>
       <RegionWarehousesList>
         {data.map((item: any) => {
           return (
@@ -19,7 +18,6 @@ const RegionWarehousesContainer: FC<any> = (params: any) => {
           );
         })}
       </RegionWarehousesList>
-    </div>
   );
 };
 

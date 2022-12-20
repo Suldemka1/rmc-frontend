@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 .button {
     max-width: 200px;
     max-height: 44px;
@@ -72,7 +73,7 @@
 }
 
 .last-news__card:nth-child(5) {
-    
+
 }
 
 .last-news__card img {
