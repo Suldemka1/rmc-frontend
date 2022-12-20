@@ -9,16 +9,10 @@ import News from "./pages/news";
 import Contacts from "./pages/contacts";
 import Warehouses from "./pages/warehouses";
 import SignIn from "./pages/SignIn";
-import PostPage from "./components/Post/PostPage";
-import WarehousePage from "./components/WarehousePage";
-import Account from "./pages/account";
-import AccountSettings from "./components/Account/AccountSettings";
-import AccountAppeals from "./components/Account/AccountAppeals";
-import AccountNewAppeal from "./components/Account/AccountNewAppeal";
-import RegionWarehoueses from "./components/RegionWarehouses";
-import { useAppDispatch, useAppSelector } from "./hooks/hooks";
-import { fetchAllWarehouses } from "./store/slices/warehouseSlice";
-import { useEffect } from "react";
+import PostPage from "../../../rmc-frontend/components/Post/PostPage";
+import WarehousePage from "./pages/warehouse";
+import RegionWarehousesList from "./components/RegionWarehousesList";
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,7 +23,7 @@ const router = createBrowserRouter(
       <Route path="/news/:id" element={<PostPage />} />
 
       <Route path="/warehouses" element={<Warehouses />} />
-      <Route path="/warehouses/:id" element={<RegionWarehoueses />} />
+      <Route path="/warehouses/:id" element={<RegionWarehousesList />} />
       <Route path="/warehouses/:id/:id" element={<WarehousePage />} />
 
       <Route path="/contacts" element={<Contacts />} />
@@ -37,10 +31,6 @@ const router = createBrowserRouter(
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<SignIn />} />
 
-      <Route path="/account" element={<Account />} />
-      <Route path="/account/settings" element={<AccountSettings />} />
-      <Route path="/account/appeals" element={<AccountAppeals />} />
-      <Route path="/account/newappeal" element={<AccountNewAppeal />} />
     </Route>
   )
 );

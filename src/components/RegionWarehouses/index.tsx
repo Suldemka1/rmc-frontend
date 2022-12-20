@@ -1,47 +1,23 @@
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
-import StandartLayout from "../../layouts/StandartLayout";
-import { getRegionsWarehouses } from "../../store/slices/regionsSlice/services";
-import ListItem from "../Warehouses/List/ListItem";
+import {FC} from "react";
+import {IRegionWithWarehousesCount} from "../../models/IRegion";
+import RegionWarehousesItem from "./RegionWarehousesItem";
 
-const RegionWarehoueses: any = () => {
-  const params = useParams();
-  const regions = useAppSelector((state) => state.regions);
-  const dispatch = useAppDispatch();
-  setTimeout(() => {
-       dispatch(getRegionsWarehouses(params.id));
-       console.log('done')
-       console.log(regions)
-    }, 5000)
-  useEffect(() => {
-    
-    
-  }, [regions]);
-
-
-  return (
-    <StandartLayout>
-      <ul className="flex flex-col gap-3">
-        {/* {regions.data.data.warehouses.map((item: any) => {
-          return (
-            <ListItem
-              key={item?.id}
-              id={item?.id}
-              title={item?.title}
-              owner={item.owner}
-              url={`/warehouses/${params.id}/${item.id}`}
-              region={item.region}
-              address={item.address}
-              contacts={item.contacts}
-              brief={item.brief}
-              payment_options={item.payment_options}
-            />
-          );
-        })} */}
-      </ul>
-    </StandartLayout>
-  );
+const RegionWarehouses: FC<any> = (params: any) => {
+	console.log(params.data)
+	return (
+		<div className="flex flex-col gap-4">
+			{params.data.map((item: IRegionWithWarehousesCount) => {
+				return (
+					<RegionWarehousesItem
+						key={item.id}
+						id={item.id}
+						title={item.title}
+						warehouses_count={item?.warehouses?.length}
+					/>
+				);
+			})}
+		</div>
+	);
 };
 
-export default RegionWarehoueses;
+export default RegionWarehouses;
