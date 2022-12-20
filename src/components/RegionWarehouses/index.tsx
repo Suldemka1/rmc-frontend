@@ -6,7 +6,7 @@ const RegionWarehouses: FC<any> = (params: any) => {
 	console.log(params.data)
 	return (
 		<div className="flex flex-col gap-4">
-			{params.data.map((item: IRegionWithWarehousesCount) => {
+			{params.regions.data.map((item: IRegionWithWarehousesCount) => {
 				return (
 					<RegionWarehousesItem
 						key={item.id}

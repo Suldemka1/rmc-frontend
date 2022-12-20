@@ -1,56 +1,38 @@
 import {IAddress} from "../IAddress";
 import {IRegion} from "../IRegion";
+import {IContact} from "../IContacts";
 
-export interface IWarehouse {
-	id: number;
-	title: string;
-	owner: string;
-	url: string;
-	region: {
-		id: 0,
-		title: ''
-	};
-	address: IAddress;
-	contacts: [
-		{
-			phone: string;
-			email: string;
-			webSiteUrl: string;
-		}
-	];
-	brief: {
-		id: number;
-		lowest_coal_cost: string;
-		devivery_cost: string;
-		average_delivery_time: string;
-		coal_remainder: string;
-	};
-	payment_options: [
-		{
-			option: string;
-		}
-	];
+export interface IBrief {
+	lowest_coal_cost: string;
+	devivery_cost: string;
+	average_delivery_time: string;
+	coal_remainder: string;
+}
+
+export interface IPaymentOption {
+	option: string
 }
 
 export interface IWarehouseCard {
 	id: number;
 	title: string;
 	url: string;
-	contacts: any;
+	contacts: [IContact];
 	region: IRegion;
 	address: IAddress;
 }
 
-export interface IWarehousePageItem {
-	brief: {
-		id: number;
-		lowest_coal_cost: string;
-		devivery_cost: string;
-		average_delivery_time: string;
-		coal_remainder: string;
-	};
+export interface IWarehouse extends IWarehouseCard {
+	owner: string;
+	brief: IBrief;
+	payment_options: [IPaymentOption];
 }
 
-export interface IWarehouseListItem extends IWarehouseCard{
+export interface IWarehousePageItem {
+	brief: IBrief;
+}
 
+export interface IWarehouseListItem extends IWarehouseCard {
+	id: number
+	title: string
 }

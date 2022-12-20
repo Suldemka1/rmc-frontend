@@ -9,7 +9,7 @@ import News from "./pages/news";
 import Contacts from "./pages/contacts";
 import Warehouses from "./pages/warehouses";
 import SignIn from "./pages/SignIn";
-import PostPage from "../../../rmc-frontend/components/Post/PostPage";
+import PostPage from "./components/Post/PostPage";
 import WarehousePage from "./pages/warehouse";
 import RegionWarehousesList from "./components/RegionWarehousesList";
 

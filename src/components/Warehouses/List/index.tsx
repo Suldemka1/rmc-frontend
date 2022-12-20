@@ -5,7 +5,7 @@ import ListItem from "./ListItem";
 const List: FC<any> = (params: any) => {
 	return (
 		<ul className="flex flex-col gap-5">
-			{params.data.map((item: IWarehouseCard) => {
+			{params.warehouses.data.map((item: IWarehouseCard) => {
 				return (
 					<ListItem
 						key={item.id}

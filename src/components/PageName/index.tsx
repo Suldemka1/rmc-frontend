@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 
 interface IPageName {
-    title: string
+    title: string | null | undefined
 }
 
 const PageName : FC<IPageName> = (params: IPageName) => {

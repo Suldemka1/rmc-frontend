@@ -2,9 +2,10 @@ import {MapContainer, TileLayer,} from "react-leaflet";
 import {Link} from "react-router-dom";
 import RepublicPolygons from "./RepublicPolygons";
 import WarehousesOnMap from "./WarehousesOnMap";
+import {useAppSelector} from "../../hooks/hooks";
 
-const Map = (params: any) => {
-
+const Map = () => {
+	const warehouses = useAppSelector(state => state.warehouses)
 	return (
 		<div className="h-fit border-2 border-black rounded">
 			<div
@@ -46,7 +47,7 @@ const Map = (params: any) => {
 					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 					opacity={0}
 				/>
-				<WarehousesOnMap/>
+				<WarehousesOnMap warehouses={warehouses.warehouses}/>
 
 				<RepublicPolygons/>
 			</MapContainer>

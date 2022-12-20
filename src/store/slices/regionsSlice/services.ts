@@ -1,24 +1,10 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import {createAsyncThunk} from "@reduxjs/toolkit";
 
-export const getAllRegions: any = createAsyncThunk(
-  "regions/getAllRegions",
-  async () => {
-    const response = await fetch(
-      `${process.env.REACT_APP_BASEURL}/api/regions?populate=*`
-    );
-    const data = await response.json();
-
-    return data;
-  }
-);
-
-export const getRegionsWarehouses: any = createAsyncThunk(
-  "regions/getRegionsWarehouses",
-  async (id) => {
-    const response = await fetch(
-      `${process.env.REACT_APP_BASEURL}/api/regions/${id}?populate=*`
-    );
-    const data = await response.json();
-    return data;
-  }
+export const fetchAllRegions: any = createAsyncThunk(
+	"regions/fetchAllRegions",
+	async () => {
+		const response = await fetch(`${process.env.REACT_APP_BASEURL}/api/regions?populate[warehouses][populate][0]=contacts&populate[warehouses][populate][1]=address&populate=[warehouses][populate][2]=brief&populate[warehouses][populate][3]=region`)
+			.then(res => res.json())
+		return response;
+	}
 );

@@ -10,42 +10,7 @@ import { useEffect, useState } from "react";
 
 const WarehousePage = () => {
   const params = useParams();
-  const [state, setState] = useState<IWarehouse>({
-    id: 0,
-    title: "",
-    owner: "",
-    url: "",
-    brief: {
-      id: 0,
-      lowest_coal_cost: "",
-      devivery_cost: "",
-      average_delivery_time: "",
-      coal_remainder: "",
-    },
-    contacts: [
-      {
-        phone: "",
-        email: "",
-        webSiteUrl: "",
-      },
-    ],
-    region: {
-      id: 0,
-      title: "",
-    },
-    address: {
-      code: "",
-      region: "",
-      street: "",
-      house: "",
-      note: "",
-    },
-    payment_options: [
-      {
-        option: "",
-      },
-    ],
-  });
+  const [state, setState] = useState<IWarehouse | null>(null);
 
   useEffect(() => {
     fetch(
@@ -54,8 +19,7 @@ const WarehousePage = () => {
       .then((res) => res.json())
       .then((res) => setState(res.data));
   }, []);
-
-  //@ts-ignore
+  
   return (
     <StandartLayout>
       <PageName title={state?.title} />
@@ -96,7 +60,7 @@ const WarehousePage = () => {
           </div>
         </div>
 
-        <WarahousePageContacts region={state.region} address={state.address} />
+        <WarahousePageContacts region={state?.region} address={state?.address} />
       </div>
 
       <Calculator />

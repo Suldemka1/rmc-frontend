@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { IRegionWarehoueses } from "../../models/IRegionWarehouses";
 import { IWarehouse } from "../../models/IWarehouse";
 import RegionWarehousesList from "./RegionWarehousesList";
 import RegionWarehousesListItem from "./RegionWarehousesList/RegionWarehousesListItem";
@@ -9,7 +8,7 @@ const RegionWarehousesContainer: FC<any> = (params: any) => {
   return (
     <div>
       <RegionWarehousesList>
-        {data.map((item: IRegionWarehoueses) => {
+        {data.map((item: any) => {
           return (
             <RegionWarehousesListItem
               key={item.id}

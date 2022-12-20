@@ -16,7 +16,6 @@ const WarehousePage = () => {
     owner: "",
     url: "",
     brief: {
-      id: 0,
       lowest_coal_cost: "",
       devivery_cost: "",
       average_delivery_time: "",
@@ -24,6 +23,7 @@ const WarehousePage = () => {
     },
     contacts: [
       {
+        id: 0,
         phone: "",
         email: "",
         webSiteUrl: "",
