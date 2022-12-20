@@ -20,7 +20,7 @@ const WarehousesOnMap: any = () => {
 								<Marker position={[Number(lat), Number(long)]}>
 									<Popup>
 										<h1 className="text-lg">{item.title}</h1>
-										<Link to={`/warehouses/0/${item.id}`}>Перейти</Link>
+										<Link to={`/warehouses/0/${item.id}`}>Перейти на страницу</Link>
 									</Popup>
 								</Marker>
 							}

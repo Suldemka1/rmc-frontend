@@ -2,10 +2,19 @@ import {MapContainer, TileLayer,} from "react-leaflet";
 import {Link} from "react-router-dom";
 import RepublicPolygons from "./RepublicPolygons";
 import WarehousesOnMap from "./WarehousesOnMap";
-import {useAppSelector} from "../../hooks/hooks";
+import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
+import {useEffect} from "react";
+import {fetchAllWarehouses} from "../../store/slices/warehouseSlice/services";
 
 const Map = () => {
 	const warehouses = useAppSelector(state => state.warehouses)
+	const dispatch = useAppDispatch()
+
+	useEffect(() => {
+		dispatch(fetchAllWarehouses())
+	}, []);
+
+
 	return (
 		<div className="h-fit border-2 border-black rounded">
 			<div
@@ -33,7 +42,7 @@ const Map = () => {
 				maxBounds={[[54, 99], [49.4, 88]]}
 
 				zoom={7}
-				maxZoom={10}
+				maxZoom={13}
 				minZoom={7}
 				zoomControl={false}
 				scrollWheelZoom={true}
@@ -47,8 +56,8 @@ const Map = () => {
 					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 					opacity={0}
 				/>
-				<WarehousesOnMap warehouses={warehouses.warehouses}/>
 
+				<WarehousesOnMap warehouses={warehouses.warehouses}/>
 				<RepublicPolygons/>
 			</MapContainer>
 		</div>
