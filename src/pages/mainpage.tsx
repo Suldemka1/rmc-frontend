@@ -3,47 +3,47 @@ import Map from "../components/Map";
 import Resources from "../components/Resources";
 import ResourcesItem from "../components/Resources/ResourcesItem";
 import {Link} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
+import {useAppDispatch, useAppSelector} from "../hooks/hooks";
+import {fetchLastPosts} from "../store/slices/newsSlice/services";
+import FormattedDate from "../components/FormattedStrings";
 
 const Mainpage = () => {
-	const [state, setState] = useState([])
+	const news = useAppSelector((state) => state.news)
+	const dispatch = useAppDispatch()
 
 	useEffect(() => {
-		fetch(`http://api.cit.rtyva.ru/api/posts?pagination[limit]=5&populate=*`)
-			.then((res) => res.json())
-			.then((res) => res.data)
-			.then((res) => setState(res))
+		dispatch(fetchLastPosts())
 	}, []);
 
+	useEffect(() => {
+		console.log(news)
+	}, []);
 
 	return (
 		<StandartLayout>
 
 			<Map/>
 			<div className="last-news__container">
-				{state?.map((item: any) => {
+				{news?.last_posts?.data?.map((item: any) => {
 
-					const date = new Date(item.publishedAt)
-					const timestamp = date.valueOf()
 
 					return (
-						<div key={item} className="last-news__card">
+						<div key={item}
+							 className="last-news__card first:relative first:flex-[0_0_auto] w-1/3 first:w-2/3 h-[200px] md:first:h-[400px] px-2 mt-5">
 
-
-							<img src="/sport.jpeg"/>
+							<img src={`${process.env.REACT_APP_BASEURL}${item.post_card.preview_image.url}`}/>
 
 							<div className="last-news__card-content__container">
 								<div className="last-news__card-content">
-									<Link className="last-news__card-title" to={`/news/${item.id}`}>
-										{item.title}
-									</Link>
-									<div className="last-news__card-date">
-										{new Intl.DateTimeFormat("ru-RU", {
-											month: 'long',
-											day: 'numeric',
-											hour: 'numeric',
-											minute: 'numeric'
-										}).format(timestamp)}
+									<h3 className="text-lg">
+										<Link className="last-news__card-title" to={`/news/${item.id}`}>
+											{item.post_card.title}
+										</Link>
+									</h3>
+
+									<div className="last-news__card-date text-sm">
+										<FormattedDate date={item.publishedAt}/>
 									</div>
 								</div>
 							</div>

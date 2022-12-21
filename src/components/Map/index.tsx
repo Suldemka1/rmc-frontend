@@ -14,11 +14,6 @@ const Map = () => {
 		dispatch(fetchAllWarehouses())
 	}, []);
 
-	useEffect(() => {
-		console.log(warehouses.warehouses.data)
-	}, []);
-
-
 	return (
 		<div className="h-fit border-2 border-black rounded">
 			<div
