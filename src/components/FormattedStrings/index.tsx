@@ -1,6 +1,4 @@
-import React, {FC} from 'react';
-
-const FormattedDate = (params: any) => {
+const FormattedDate = (params: {date: string}) => {
 
 	const date = new Date(params.date)
 	const timestamp = date.valueOf()

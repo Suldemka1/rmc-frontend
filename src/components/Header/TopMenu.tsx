@@ -57,7 +57,7 @@ const menuRoutes = [
     },
     {
         id: 2,
-        name: 'Карта угольных складов',
+        name: 'Карта',
         to: '/warehouses'
     },
     {

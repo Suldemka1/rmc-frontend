@@ -32,7 +32,7 @@ const Mainpage = () => {
 						<div key={item}
 							 className="last-news__card first:relative first:flex-[0_0_auto] w-1/3 first:w-2/3 h-[200px] md:first:h-[400px] px-2 mt-5">
 
-							<img src={`${process.env.REACT_APP_BASEURL}${item.post_card.preview_image.url}`}/>
+							<img src={`${process.env.REACT_APP_BASEURL}${item.post_card.preview_image.url}`} className="object-cover"/>
 
 							<div className="last-news__card-content__container">
 								<div className="last-news__card-content">
@@ -53,11 +53,11 @@ const Mainpage = () => {
 			</div>
 
 			<Resources>
-				{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17].map((item, index) => {
+				{/* {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17].map((item, index) => {
 					return (
 						<ResourcesItem key={index}/>
 					)
-				})}
+				})} */}
 			</Resources>
 		</StandartLayout>
 	);

@@ -7,7 +7,10 @@ const Header: FC = () => {
         <header className="sticky top-0 min-h-[100px] bg-blue-500 flex flex-column items-center" style={{zIndex: 401}}>
             <div className="container mx-auto flex flex-row justify-between items-center text-white font-semibold">
                 <div className="xs:text-2xl md:text-3xl font-bold select-none cursor-pointer">
-                    <h1>Интерактивная карта угольных складов</h1>
+                    <a href='/'>
+                        <h1>Интерактивная карта угольных складов<br/>Республики Тыва</h1>
+                    </a>
+                    
                 </div>
                 <div className='sm:hidden md:block'>
                     <TopMenu/>
