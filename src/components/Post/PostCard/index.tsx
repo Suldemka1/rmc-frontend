@@ -11,15 +11,17 @@ const PostCard = (params: any ) => {
                 <h1>{params.title}</h1>
             </div>
 
-            <div id="post-body" className="flex sm:flex-col xs:flex-col md:flex-col lg:flex-row gap-3 p-3">
+            <div id="post-body" className="flex sm:flex-col xs:flex-col md:flex-col lg:flex-row gap-3">
+
                 <div className='sm:hidden md:block'>
                     <img src={params.preview_image} className="min-w-[150px] max-w-[300px]"/>
                 </div>
+
                 <p>{params.short_body}</p>
             </div>
 
             <div id="post-footer"
-                 className="w-100 flex flex-row justify-between items-center bg-blue-400 text-gray-50 p-3 mt-3">
+                 className="w-100 flex flex-row justify-between items-center bg-blue-400 text-gray-50 p-3">
 
                 <div className="font-semibold">
                     <p>Дата публикации:</p>
