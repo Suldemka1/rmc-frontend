@@ -3,7 +3,7 @@ import React from 'react';
 const NewsOnMainpageItem = () => {
     return (
         <div>
-            <img src="/favicon.ico" />
+            <img src="/favicon.ico" className=""/>
         </div>
     );
 };

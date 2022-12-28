@@ -110,7 +110,7 @@ const WarehousePage = () => {
         />
       </div>
 
-      {/* <Calculator /> */}
+      <Calculator />
       <WarehousePageFootnotes />
     </StandartLayout>
   );
