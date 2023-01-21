@@ -1,5 +1,9 @@
-import {ReactNode} from "react";
+import { ReactNode } from "react";
 
 export interface IChildren {
-    children?: ReactNode
+  children?: ReactNode;
+}
+
+export interface IPage extends IChildren {
+  localeUrl?: String;
 }

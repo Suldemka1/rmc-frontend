@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import ListItem from "../../components/Warehouses/List/ListItem";
 import StandartLayout from "../../layouts/StandartLayout";
+import { IWarehouseListItem } from '../../models/IWarehouse';
 
 const RegionWarehouses = () => {
 	const [state, setState] = useState<any>({});
@@ -20,18 +21,19 @@ const RegionWarehouses = () => {
 	}, []);
 
 	return (
-		<StandartLayout>
+		<StandartLayout localeUrl={`Главная/Регионы/${params.id}`}>
 			<ul className="flex flex-col gap-3">
-				{state?.warehouses?.map((item: any) => {
+
+				{state?.warehouses?.map((item: IWarehouseListItem) => {
 					return (
 						<ListItem
 							key={item?.id}
 							id={item?.id}
 							title={item?.title}
-							url={`/warehouses/${params?.id}/${item?.id}`}
+							url={`/warehouses/${item?.id}`}
 							address={item.address}
 							contacts={item.contacts}
-							region={item.regions}
+							region={item.region}
 						/>
 					);
 				})}

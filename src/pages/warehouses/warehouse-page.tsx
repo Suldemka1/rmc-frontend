@@ -6,7 +6,7 @@ import Calculator from "../../components/WarehousePage/Calculator";
 import WarehousePageFootnotes from "../../components/WarehousePage/WarehousePageFootnotes";
 import StandartLayout from "../../layouts/StandartLayout";
 import { useParams } from "react-router-dom";
-import { IWarehouse } from "../../models/IWarehouse";
+import { IProduct, IWarehouse } from "../../models/IWarehouse";
 
 const WarehousePage = () => {
   const params = useParams();
@@ -17,10 +17,10 @@ const WarehousePage = () => {
     owner: "",
     url: "",
     brief: {
-      lowest_coal_cost: "",
-      devivery_cost: "",
-      average_delivery_time: "",
-      coal_remainder: "",
+      lowest_coal_cost: 0,
+      devivery_cost: 0,
+      average_delivery_time: 0,
+      coal_remainder: 0,
     },
     contacts: [
       {
@@ -41,13 +41,26 @@ const WarehousePage = () => {
       house: "",
       note: "",
     },
-    // @ts-ignore
-    schedule: [],
+    schedule: [
+      {
+        id: 0,
+        day: "",
+        time: ""
+      }
+    ],
     payment_options: [
       {
         option: "",
       },
     ],
+    coal_products: [
+      {
+        id: 0,
+        name: "Каа-Хемский уголь",
+        coal_price: 2774,
+        coal_remainder: 100
+      }
+    ]
   });
 
   useEffect(() => {
@@ -59,7 +72,7 @@ const WarehousePage = () => {
   }, []);
 
   return (
-    <StandartLayout>
+    <StandartLayout localeUrl={`Главная/Склады/${params.id}`}>
       <PageName title={state?.title} />
 
       <div className="flex flex-col gap-10">
@@ -70,35 +83,45 @@ const WarehousePage = () => {
 
         <div className="flex flex-col gap-3 text-lg">
           <h1 className="text-2xl">Услуги и оплата</h1>
-          <div className="">
-            <details>
-              <summary className="summary">Прейскурант цен на уголь</summary>
-              <div>
-                <ul>
-                  <li className="grid grid-cols-2">
-                    <p>Каа-Хемский</p>
-                    <p>2734₽</p>
+          <div className="w-3/5 rounded border-2 border-black">
+            <h1 className="text-xl font-semibold  py-3 px-2">Прейскурант цен на уголь</h1>
+            <ul className="">
+              {state?.coal_products?.map((item: IProduct) => {
+                return (
+                  <li key={item.id} className="grid grid-cols-2 odd:text-white odd:bg-blue-500 text-xl px-2 py-3">
+                    <p>{item.name}</p>
+                    <p>{item.coal_price}₽</p>
                   </li>
-                </ul>
-              </div>
-            </details>
+                )
+
+              })
+
+                // <li className="grid grid-cols-2 odd:text-white odd:bg-blue-500 text-xl px-2 py-3">
+                //   <p>Каа-Хемский</p>
+                //   <p>2734₽</p>
+                // </li>
+                // <li className="grid grid-cols-2 odd:text-white odd:bg-blue-500 text-xl px-2 py-3">
+                //   <p>Каа-Хемский</p>
+                //   <p>2734₽</p>
+                // </li>
+              }
+
+            </ul>
           </div>
 
-          <div>
-            <details>
-              <summary className="summary">Способы оплаты</summary>
-              <div className="px-3 py-2">
-                <ul>
-                  {state.payment_options.map((item, index) => {
-                    return (
-                      <li key={index} className="">
-                        {item.option}
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            </details>
+          <div className="w-3/5 rounded border-2 border-black">
+            <h1 className="text-xl font-semibold py-3 px-2">Способы оплаты</h1>
+            <div className="">
+              <ul>
+                {state.payment_options.map((item, index) => {
+                  return (
+                    <li key={item.option} className="grid grid-cols-2 odd:text-white odd:bg-blue-500 text-xl px-2 py-3">
+                      {item.option}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -110,7 +133,13 @@ const WarehousePage = () => {
         />
       </div>
 
-      <Calculator />
+      <Calculator
+        coal_price={state.coal_products[0].coal_price}
+        quantity={undefined}
+        coal_remainder={state.brief.coal_remainder}
+        coal_products={state.coal_products}
+        delievery_price={state.brief.devivery_cost}
+        average_delievery_time={state.brief.average_delivery_time} />
       <WarehousePageFootnotes />
     </StandartLayout>
   );

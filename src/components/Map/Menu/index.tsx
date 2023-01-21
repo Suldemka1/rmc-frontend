@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import MenuItem from "./MenuItem";
 import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
-import { setList, setMap, setRegion } from "../../../store/slices/mapSlice";
+import { setList, setRegion } from "../../../store/slices/mapSlice";
 
 const Menu: FC = () => {
   const state = useAppSelector((state) => state.map);
@@ -9,14 +9,14 @@ const Menu: FC = () => {
 
   return (
     <div className="flex sm:flex-col xs:flex-col md:flex-row gap-5 py-5">
-      <MenuItem
+      {/* <MenuItem
         id="map"
         name="Карта"
         isChecked={state.map}
         onChange={() => {
           dispatch(setMap());
         }}
-      />
+      /> */}
       <MenuItem
         id="list"
         name="Списком"

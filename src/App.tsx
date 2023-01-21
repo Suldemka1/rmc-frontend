@@ -12,7 +12,6 @@ import NewsPage from "./pages/news/NewsPage";
 import RegionWarehouses from "./pages/warehouses/region-warehouses";
 import WarehousePage from "./pages/warehouses/warehouse-page";
 
-
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
@@ -22,8 +21,9 @@ const router = createBrowserRouter(
       <Route path="/news/:id" element={<NewsPage />} />
 
       <Route path="/warehouses" element={<Warehouses />} />
-      <Route path="/warehouses/:id" element={<RegionWarehouses />} />
-      <Route path="/warehouses/:id/:id" element={<WarehousePage />} />
+      <Route path="/warehouses/:id" element={<WarehousePage />} />
+      <Route path="/regions/:id" element={<RegionWarehouses />} />
+      {/* <Route path="/warehouses/:id/:id" element={<WarehousePage />} /> */}
 
       <Route path="/contacts" element={<Contacts />} />
     </Route>
@@ -31,6 +31,7 @@ const router = createBrowserRouter(
 );
 
 function App() {
+
   return (
     <>
       <RouterProvider router={router} />

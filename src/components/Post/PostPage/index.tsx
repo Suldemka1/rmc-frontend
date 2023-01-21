@@ -6,7 +6,7 @@ const PostPage = () => {
     const {id} = useParams()
 
     return (
-        <StandartLayout>
+        <StandartLayout localeUrl={`/Новости/${id}`}>
             <h1 className="text-3xl">Заголовок новости</h1>
             <div className=":[p]>py-3">
                 <p className="py-2">

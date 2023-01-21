@@ -1,16 +1,13 @@
-import React from 'react';
 import {Link} from "react-router-dom";
-import {useAppSelector} from "../../hooks/hooks";
 
 const TopMenu = () => {
-    const state = useAppSelector(state => state.auth)
 
     return (
         <menu className="sm:hiddre md:flex flex-row justify-between gap-3 uppercase [&>li]:h-fit">
             {
                 menuRoutes.map((item: ITopMenu) => {
                     return (
-                        <li key={item.id}>
+                        <li key={item.to}>
                             <Link to={item.to}>
                                 {item.name}
                             </Link>
@@ -57,7 +54,7 @@ const menuRoutes = [
     },
     {
         id: 2,
-        name: 'Карта',
+        name: 'Склады',
         to: '/warehouses'
     },
     {

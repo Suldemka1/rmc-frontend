@@ -1,23 +1,33 @@
 import React from 'react';
-import {BsClock, BsPersonCircle,} from "react-icons/bs";
+import { BsClock, BsPersonCircle, } from "react-icons/bs";
 
-const ContactsItem = () => {
+interface IContactItem {
+    title: String,
+    subtitle: String,
+    phone: String,
+    schedule: {
+        start_time: String,
+        end_time: String
+    }
+}
+
+const ContactsItem = (params: IContactItem) => {
     return (
-        <div className="grid grid-cols-2 text-lg py-3">
+        <div className="grid grid-cols-[3fr_1fr] text-lg py-3">
 
             <div className="">
-                <h3 className="font-bold">Справочная служба</h3>
+                <h3 className="font-bold">{params.title}</h3>
                 <div className="flex gap-2 items-center font-normal">
                     <BsPersonCircle />
-                    <p>ФИО специалиста</p>
+                    <p>{params.subtitle}</p>
                 </div>
             </div>
 
             <div className="">
-                <h4>+7 (900) 375 2405</h4>
+                <h4>{params.phone}</h4>
                 <div className="flex gap-2 items-center">
                     <BsClock />
-                    <p>09:00 - 18:00</p>
+                    <p>{params.schedule.start_time} - {params.schedule.end_time}</p>
                 </div>
             </div>
         </div>

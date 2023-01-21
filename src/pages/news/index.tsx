@@ -4,17 +4,20 @@ import PostCard from "../../components/Post/PostCard";
 import StandartLayout from "../../layouts/StandartLayout";
 import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
 import {fetchAllPosts} from "../../store/slices/newsSlice/services";
+import { useParams } from 'react-router-dom';
 
 const News = () => {
+	const history = document.referrer
 	const news = useAppSelector((state) => state.news)
 	const dispatch = useAppDispatch()
 
 	useEffect(() => {
 		dispatch(fetchAllPosts())
+		console.log(history)
 	}, []);
 
 	return (
-		<StandartLayout>
+		<StandartLayout localeUrl="Главная/Новости">
 			<PageName title="Новости"/>
 			<div className="flex flex-col gap-3">
 				{

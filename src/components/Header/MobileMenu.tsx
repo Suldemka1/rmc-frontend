@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ITopMenu } from "./TopMenu";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
@@ -41,7 +41,7 @@ const MobileMenu = () => {
           {menuRoutes.map((item: ITopMenu) => {
             return (
               <Link
-                key={item.id}
+                key={item.name}
                 to={item.to}
                 onClick={() => dispatch(CloseMenu())}
               >
@@ -58,22 +58,22 @@ const MobileMenu = () => {
 const menuRoutes = [
   {
     id: 0,
-    name: "главная",
+    name: "Главная",
     to: "/",
   },
   {
     id: 1,
-    name: "новости",
+    name: "Новости",
     to: "/news",
   },
   {
     id: 2,
-    name: "карта угольных складов",
+    name: "Склады",
     to: "/warehouses",
   },
   {
     id: 3,
-    name: "контакты",
+    name: "Контакты",
     to: "/Contacts",
   },
 ];

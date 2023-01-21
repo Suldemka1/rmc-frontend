@@ -31,11 +31,11 @@ const WarahousePageContacts = ({
         </div>
       </div>
       <div>
-        <h1>График работы склада</h1>
-        <div className="xs:grid md:grid xs:grid-cols-2 md:grid-cols-7 justify-between">
+        <h1 className="font-semibold text-xl py-3">График работы склада</h1>
+        <div className="xs:grid md:grid sm:grid-rows-7 xs:grid-cols-2 md:grid-cols-7 justify-between border-2 border-black rounded">
           {schedule?.map((item: ISchedule) => {
             return (
-              <span key={item?.id}>
+              <span key={item?.id} className="grid sm:grid-cols-2 sm:grid-rows-none xs:grid-cols-none xs:grid-rows-2 md:grid-rows-2 odd:text-white odd:bg-blue-500 p-3">
                 <p>{item?.day}</p>
                 <p>{item?.time}</p>
               </span>
@@ -43,8 +43,6 @@ const WarahousePageContacts = ({
           })}
         </div>
       </div>
-
-      <div>Заведующий складом: Фамилия Имя Отчество</div>
     </div>
   );
 };

@@ -1,8 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {fetchAllRegions} from "./services";
+import { fetchAllRegions, fetchRegionByName } from "./services";
+import { IRegion } from "../../../models/IRegion";
 
-const initialState: any = {
-  regions: []
+interface IRegions {
+  regions: { data: [IRegion] | undefined };
+  status: String;
+}
+
+const initialState: IRegions = {
+  regions: { data: undefined },
+  status: "pending",
 };
 
 const regionsSlice = createSlice({
@@ -11,12 +18,29 @@ const regionsSlice = createSlice({
   reducers: {},
 
   extraReducers: {
-    [fetchAllRegions.fulfilled]: (state, action: {payload: any}) => {
+    [fetchAllRegions.fulfilled]: (
+      state,
+      action: { payload: { data: [IRegion]; meta: unknown } }
+    ) => {
       state.regions = action.payload;
+      state.status = "fulfilled";
+      console.log(state);
     },
-    [fetchAllRegions.rejected]: (state, action) =>  {
-      state.status = "error"
-    }
+    [fetchAllRegions.rejected]: (state, action) => {
+      state.status = "error";
+    },
+
+    [fetchRegionByName.pending]: (state, action) => {
+      state.status = "pending";
+      console.log(state.status);
+    },
+    [fetchRegionByName.fulfilled]: (
+      state,
+      action: { payload: { data: [IRegion]; meta: unknown } }
+    ) => {
+      state.regions = action.payload;
+      state.status = "fulfilled";
+    },
   },
 });
 

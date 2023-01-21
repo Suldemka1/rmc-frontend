@@ -1,12 +1,23 @@
-import {MapContainer, TileLayer,} from "react-leaflet";
-import {Link} from "react-router-dom";
+import { MapContainer, TileLayer, } from "react-leaflet";
+import { Link } from "react-router-dom";
 import RepublicPolygons from "./RepublicPolygons";
 import WarehousesOnMap from "./WarehousesOnMap";
-import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
-import {useEffect} from "react";
-import {fetchAllWarehouses} from "../../store/slices/warehouseSlice/services";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
+import { useEffect } from "react";
+import { fetchAllWarehouses } from "../../store/slices/warehouseSlice/services";
+import MarkerClusterGroup from "react-leaflet-cluster";
+import L from "leaflet"
+import { FC } from "react";
 
-const Map = () => {
+const ClusterIcon = function (cluster: { getChildCount: () => any; }) {
+	return L.divIcon({
+		html: `<span>${cluster.getChildCount()}</span>`,
+		className: 'custom-marker-cluster',
+		iconSize: L.point(33, 33, true),
+	})
+}
+
+const Map: FC<any> = () => {
 	const warehouses = useAppSelector(state => state.warehouses)
 	const dispatch = useAppDispatch()
 
@@ -18,7 +29,7 @@ const Map = () => {
 		<div className="h-fit border-2 border-black rounded">
 			<div
 				className="absolute flex flex-col gap-3 text-center mt-5 ml-10"
-				style={{zIndex: 400}}
+				style={{ zIndex: 400 }}
 			>
 				<Link
 					className="w-full h-full bg-gray-600 rounded py-2 px-3 text-gray-300 items-center
@@ -55,9 +66,22 @@ const Map = () => {
 					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 					opacity={0}
 				/>
-
-				<WarehousesOnMap warehouses={warehouses.warehouses.data}/>
-				<RepublicPolygons/>
+				<MarkerClusterGroup
+					iconCreateFunction={ClusterIcon}
+					spiderfyOnMaxZoom={true}
+					maxClusterRadius={20}
+					polygonOptions={{
+						fillColor: '#ffffff',
+						color: '#282c34',
+						weight: 1,
+						opacity: 1,
+						fillOpacity: 0.8,
+					}}
+					showCoverageOnHover={true}
+					chunkedLoading>
+					<WarehousesOnMap warehouses={warehouses.warehouses.data} />
+				</MarkerClusterGroup>
+				<RepublicPolygons />
 			</MapContainer>
 		</div>
 	);

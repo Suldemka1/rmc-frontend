@@ -27,12 +27,12 @@ const NewsPage = () => {
   }, []);
 
   return (
-    <StandartLayout>
+    <StandartLayout localeUrl={`Главная/Новости/${params.id}`}>
       <PageName title={state.post_card.title} />
       <div className="flex">
         <img
           src={process.env.REACT_APP_BASEURL + state.post_card.images[0].url}
-					className="w-[400px] h-[300px] object-cover pr-2 pb-2"
+          className="w-[400px] h-[300px] object-cover pr-2 pb-2"
         />
         <div>{parser(state.post_card.body)}</div>
       </div>

@@ -1,15 +1,15 @@
-import {Link} from "react-router-dom";
-import {IWarehouseListItem} from "../../../models/IWarehouse";
-import {MdEmail, MdPhone} from "react-icons/md";
+import { Link } from "react-router-dom";
+import { IWarehouseListItem } from "../../../models/IWarehouse";
+import { MdEmail, MdPhone } from "react-icons/md";
 
 const ListItem = ({
-					  id,
-					  title,
-					  url,
-					  contacts,
-					  address,
-					  region
-				  }: IWarehouseListItem) => {
+	id,
+	title,
+	url,
+	contacts,
+	address,
+	region
+}: IWarehouseListItem) => {
 	return (
 		<li className="border border-black rounded">
 			<div className="flex flex-col">
@@ -32,18 +32,18 @@ const ListItem = ({
 							<div className="flex flex-col gap-3 p-3">
 								{
 									contacts[0]?.phone && <div className="flex flex-row items-center gap-2">
-                                        <MdPhone className="w-6 h-6"/>
+										<MdPhone className="w-6 h-6" />
 
-                                        <p>{contacts[0]?.phone}</p>
-                                    </div>
+										<p>{contacts[0]?.phone}</p>
+									</div>
 								}
 
 								{
 									contacts[0]?.email &&
-                                    <div className="flex flex-row items-center gap-2">
-                                        <MdEmail className="w-6 h-6"/>
-                                        <p>{contacts[0]?.email}</p>
-                                    </div>
+									<div className="flex flex-row items-center gap-2">
+										<MdEmail className="w-6 h-6" />
+										<p>{contacts[0]?.email}</p>
+									</div>
 								}
 							</div>
 						</details>

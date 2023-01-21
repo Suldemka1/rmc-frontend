@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, { FC } from 'react';
 import StandartLayout from "../layouts/StandartLayout";
 import ContactsItem from "../components/Contacts/ContactsItem";
 import WarehouseContactItem from "../components/Contacts/WarehouseContactItem";
@@ -6,24 +6,27 @@ import PageName from "../components/PageName";
 
 const Contacts: FC = () => {
     return (
-        <StandartLayout>
+        <StandartLayout localeUrl="Главная/Контакты">
             <div className="flex justify-between">
                 <div className="w-full">
-                    <PageName title="Контакты"/>
+                    <PageName title="Контакты" />
 
-                    {[1, 2, 3, 4, 5, 6].map((item) => {
-                        return (
-                            <ContactsItem key={item}/>
-                        )
-                    })}
-
-                    <h1 className="text-3xl py-3">Контакты складов</h1>
-
-                    {[1,2,3,4,5,6].map((item) => {
-                        return (
-                            <WarehouseContactItem  key={item}/>
-                        )
-                    })}
+                    <ContactsItem
+                        title="Справочная служба дежурного/диспетчера министерства топлива и энергетики"
+                        subtitle="Фамилия Имя Отчество"
+                        phone={"83942200000"}
+                        schedule={{
+                            start_time: "9:00",
+                            end_time: "18:00"
+                        }} />
+                    <ContactsItem
+                        title="Справочная служба дежурного/диспетчера службы по тарифам"
+                        subtitle="Фамилия Имя Отчество"
+                        phone={"83942200000"}
+                        schedule={{
+                            start_time: "9:00",
+                            end_time: "18:00"
+                        }} />
                 </div>
             </div>
 
