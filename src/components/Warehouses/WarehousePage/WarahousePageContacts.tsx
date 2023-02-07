@@ -1,6 +1,6 @@
 import React from "react";
 import { MdEmail, MdPhone } from "react-icons/md";
-import { ISchedule } from "../../models/IWarehouse";
+import { ISchedule } from "../../../models/IWarehouse";
 
 const WarahousePageContacts = ({
   region,

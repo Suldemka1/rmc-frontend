@@ -4,7 +4,7 @@ import RegionWarehousesListItem from "./RegionWarehousesListItem";
 
 const RegionWarehouses: FC<any> = (params: any) => {
 	return (
-		<div className="flex flex-col gap-4">
+		<div className="grid grid-cols-2 gap-3">
 			{params?.regions.map((item: IRegionWithWarehousesCount) => {
 				return (
 					<RegionWarehousesListItem

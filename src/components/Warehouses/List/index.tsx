@@ -4,7 +4,7 @@ import ListItem from "./ListItem";
 
 const List: FC<any> = (params: any) => {
 	return (
-		<ul className="flex flex-col gap-5">
+		<ul className="grid sm:grid-cols-1 md:grid-cols-2 gap-3">
 			{
 				params?.warehouses?.map((item: IWarehouseCard) => {
 					return (

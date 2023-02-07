@@ -1,4 +1,3 @@
-import React from 'react';
 import { BsClock, BsPersonCircle, } from "react-icons/bs";
 
 interface IContactItem {

@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import FormattedDate from "../../FormattedStrings";
 import MediaQuery from 'react-responsive';
 
+
+
 const PostCard = (params: any) => {
     return (
         <div id="post-card"

@@ -42,10 +42,3 @@ export interface IWarehouse extends IWarehouseCard {
   payment_options: [IPaymentOption];
   coal_products: [IProduct];
 }
-
-export interface IWarehousePageItem {
-  brief: IBrief;
-}
-
-export interface IWarehouseListItem extends IWarehouseCard {
-}

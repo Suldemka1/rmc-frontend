@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import PageName from "../../components/PageName";
-import BriefDescription from "../../components/WarehousePage/BriefDescription";
-import WarahousePageContacts from "../../components/WarehousePage/WarahousePageContacts";
-import Calculator from "../../components/WarehousePage/Calculator";
-import WarehousePageFootnotes from "../../components/WarehousePage/WarehousePageFootnotes";
+import BriefDescription from "../../components/Warehouses/WarehousePage/BriefDescription";
+import WarahousePageContacts from "../../components/Warehouses/WarehousePage/WarahousePageContacts";
+import Calculator from "../../components/Warehouses/WarehousePage/Calculator";
+import WarehousePageFootnotes from "../../components/Warehouses/WarehousePage/WarehousePageFootnotes";
 import StandartLayout from "../../layouts/StandartLayout";
 import { useParams } from "react-router-dom";
 import { IProduct, IWarehouse } from "../../models/IWarehouse";
@@ -13,9 +13,9 @@ const WarehousePage = () => {
 
   const [state, setState] = useState<IWarehouse>({
     id: 0,
-    title: "",
-    owner: "",
-    url: "",
+    title: "загрузка",
+    owner: "загрузка",
+    url: "загрузка",
     brief: {
       lowest_coal_cost: 0,
       devivery_cost: 0,
@@ -25,38 +25,38 @@ const WarehousePage = () => {
     contacts: [
       {
         id: 0,
-        phone: "",
-        email: "",
-        webSiteUrl: "",
+        phone: "загрузка",
+        email: "загрузка",
+        webSiteUrl: "загрузка",
       },
     ],
     region: {
       id: 0,
-      title: "",
+      title: "загрузка",
     },
     address: {
-      code: "",
-      region: "",
-      street: "",
-      house: "",
-      note: "",
+      code: "загрузка",
+      region: "загрузка",
+      street: "загрузка",
+      house: "загрузка",
+      note: "загрузка",
     },
     schedule: [
       {
         id: 0,
-        day: "",
-        time: ""
+        day: "загрузка",
+        time: "загрузка"
       }
     ],
     payment_options: [
       {
-        option: "",
+        option: "загрузка",
       },
     ],
     coal_products: [
       {
         id: 0,
-        name: "Каа-Хемский уголь",
+        name: "загрузка",
         coal_price: 2774,
         coal_remainder: 100
       }
@@ -64,11 +64,13 @@ const WarehousePage = () => {
   });
 
   useEffect(() => {
-    fetch(
-      `${process.env.REACT_APP_BASEURL}/api/warehouses/${params.id}?populate=*`
-    )
-      .then((res) => res.json())
-      .then((res) => setState(res.data));
+    setTimeout(() => {
+      fetch(
+        `${process.env.REACT_APP_BASEURL}/api/warehouses/${params.id}?populate=*`
+      )
+        .then((res) => res.json())
+        .then((res) => setState(res.data));
+    }, 100)
   }, []);
 
   return (

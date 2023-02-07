@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IProduct } from '../../../models/IWarehouse';
+import { IProduct } from '../../../../models/IWarehouse';
 import { CalcDelieveryDay, Calculate, CalculateWithoutDelievery, Validate } from './functions';
 
 interface ICalculateParams {
@@ -12,7 +12,7 @@ interface ICalculateParams {
 }
 
 const Calculator = (params: ICalculateParams) => {
-    const [coalPrice, setCoalPrice] = useState<number>(params.coal_price)
+    const [coalPrice, setCoalPrice] = useState<number| undefined>(undefined)
     const [quantity, setQuantity] = useState<number | undefined>(0)
     const [coalRemainder, setCoalRemainder] = useState<number>(params.coal_products[0].coal_remainder)
     const [result, setResult] = useState<number | string | undefined>(undefined)
@@ -20,8 +20,8 @@ const Calculator = (params: ICalculateParams) => {
 
     function handleClick() {
         if (quantity) {
-            setResult(Calculate(coalPrice, quantity, params.delievery_price, 100));
-            setResultWithoutDelievery(CalculateWithoutDelievery(coalPrice, quantity, coalRemainder));
+            setResult(Calculate(coalPrice!, quantity, params.delievery_price, 100));
+            setResultWithoutDelievery(CalculateWithoutDelievery(coalPrice!, quantity, coalRemainder));
         }
         else {
             setQuantity(undefined)
@@ -72,7 +72,6 @@ const Calculator = (params: ICalculateParams) => {
                 <h1>{Validate(result, quantity, coalRemainder) ? `${result} при доставке по адресу` : null}</h1>
                 <h1>{CalcDelieveryDay(params.average_delievery_time)}</h1>
             </div>
-
         </div>
     );
 };

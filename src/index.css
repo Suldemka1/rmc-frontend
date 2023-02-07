@@ -61,7 +61,6 @@
 
 .last-news {
   position: static;
-  margin: 0 0 100px 0;
 }
 
 .last-news__container {
@@ -137,4 +136,18 @@
 .last-news__card:first-child
   .last-news__card-content__container
   .last-news__card-date {
+}
+
+.mobile__menu {
+  animation: slidein-right 1s forwards;
+}
+
+@keyframes slidein-right {
+  0% {
+    transform: translateX(200%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
 }

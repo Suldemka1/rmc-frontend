@@ -1,10 +1,9 @@
 import StandartLayout from "../../layouts/StandartLayout";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
-import Map from "../../components/Map";
 import List from "../../components/Warehouses/List";
 import Menu from "../../components/Map/Menu";
 import RegionWarehouses from "../../components/Regions";
-import React, { ChangeEvent, FC, useCallback, useEffect } from "react";
+import React, { FC, useCallback, useEffect } from "react";
 import { fetchAllWarehouses, fetchWarehousesByKozhuunName } from "../../store/slices/warehouseSlice/services";
 import { fetchAllRegions, fetchRegionByName } from "../../store/slices/regionsSlice/services";
 import { IRegion } from "../../models/IRegion";
@@ -25,12 +24,17 @@ const Warehouses: FC = () => {
     dispatch(fetchRegionByName(e.target.value))
   }, [])
 
+  useEffect(() => {
+    dispatch(fetchAllRegions())
+    dispatch(fetchAllWarehouses())
+  }, [])
+
   const renderSelectItems = useCallback(() => {
     return (
       <select
         className="w-[300px] h-[35px] border border-black rounded py-2 px-2"
         onChange={handleSelectOnChange}>
-          <option value="">Все</option>
+        <option value="">Все</option>
         {
           regions != undefined && regions?.regions?.data?.map((item: IRegion) => {
             return <option value={item.title}>{item.title}</option>
@@ -43,11 +47,11 @@ const Warehouses: FC = () => {
 
   function displayRegionCards() {
     if (state.region) {
-      if (regions.status != 'pending') {
+      if (regions.status != 'pending' && regions.status != 'rejected') {
         return <RegionWarehouses regions={regions?.regions?.data} />
       }
       else {
-        return 'loading'
+        return 'loading...'
       }
     }
     else {
@@ -57,11 +61,11 @@ const Warehouses: FC = () => {
 
   function displayWarehousesCards() {
     if (state.list) {
-      if (warehouses.status != 'pending') {
+      if (warehouses.status != 'pending' && warehouses.status != 'rejected') {
         return <List warehouses={warehouses?.warehouses?.data} />
       }
       else {
-        return 'loading'
+        return 'loading...'
       }
     }
     else {
@@ -71,7 +75,7 @@ const Warehouses: FC = () => {
 
   return (
     <StandartLayout localeUrl="Главная/Склады">
-      <div className="flex flex-row gap-4 items-center">
+      <div className="flex sm:flex-col md:flex-row sm:items-start md:items-center sm:justify-between pb-3">
         <Menu />
         {renderSelectItems()}
       </div>

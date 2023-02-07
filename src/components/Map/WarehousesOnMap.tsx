@@ -34,7 +34,7 @@ const WarehousesOnMap: any = () => {
 							key={index + 100}
 							eventHandlers={{
 								click: () => {
-									navigate(`/warehouses/0/${item.id}`)
+									navigate(`/warehouses/${item.id}`)
 								}
 							}}
 

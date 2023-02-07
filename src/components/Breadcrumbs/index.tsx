@@ -1,7 +1,7 @@
-import React, { ReactNode, useEffect, useMemo, useState } from "react"
+import { ReactNode, useEffect, useMemo, useState } from "react"
 import { FC } from "react"
 import { Link } from "react-router-dom"
-import { MdKeyboardArrowRight, MdArrowRightAlt } from 'react-icons/md'
+import { MdArrowRightAlt } from 'react-icons/md'
 
 const renderBreadcrumbs = (names: String[], links: String[]) => {
   const breadcrumbsArray: ReactNode[] = []
@@ -44,12 +44,10 @@ const renderBreadcrumbs = (names: String[], links: String[]) => {
 }
 
 const Breadcrumbs: FC<any> = ({ params, localeUrl }: any) => {
-  const [url, setUrl] = useState<String>('')
   const [urlName, setUrlName] = useState<String[]>([])
   const [urlPath, setUrlPath] = useState<String[]>([])
 
   useMemo(() => {
-    // setUrl(window.location.href)
     setUrlPath(window.location.href.split('/'))
     setUrlName(localeUrl.split('/'))
   }, [])
@@ -58,8 +56,6 @@ const Breadcrumbs: FC<any> = ({ params, localeUrl }: any) => {
     setUrlPath(window.location.href.split('/'))
     setUrlName(localeUrl.split('/'))
   }, [window.location.href])
-
-
 
   return (
     <div className="flex flex-row items-center gap-2 py-3">

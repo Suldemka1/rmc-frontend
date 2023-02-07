@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import {useParams} from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useParams } from "react-router-dom";
 import ListItem from "../../components/Warehouses/List/ListItem";
 import StandartLayout from "../../layouts/StandartLayout";
-import { IWarehouseListItem } from '../../models/IWarehouse';
+import { IWarehouseCard } from '../../models/IWarehouse';
 
 const RegionWarehouses = () => {
 	const [state, setState] = useState<any>({});
@@ -15,16 +15,13 @@ const RegionWarehouses = () => {
 			.catch((res) => {
 				console.error(res)
 			})
-			.finally(() => {
-				console.log('done')
-			})
 	}, []);
 
 	return (
 		<StandartLayout localeUrl={`Главная/Регионы/${params.id}`}>
 			<ul className="flex flex-col gap-3">
 
-				{state?.warehouses?.map((item: IWarehouseListItem) => {
+				{state?.warehouses?.map((item: IWarehouseCard) => {
 					return (
 						<ListItem
 							key={item?.id}

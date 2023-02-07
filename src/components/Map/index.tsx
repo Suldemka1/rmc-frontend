@@ -26,21 +26,21 @@ const Map: FC<any> = () => {
 	}, []);
 
 	return (
-		<div className="h-fit border-2 border-black rounded">
+		<div className="sm:w-full h-fit md:border-2 border-black rounded">
 			<div
 				className="absolute flex flex-col gap-3 text-center mt-5 ml-10"
 				style={{ zIndex: 400 }}
 			>
 				<Link
 					className="w-full h-full bg-gray-600 rounded py-2 px-3 text-gray-300 items-center
-                              cursor-pointer select-none peer-checked:bg-gray-800"
+                              cursor-pointer select-none peer-checked:bg-gray-800 z-[1000]"
 					to="/warehouses/1"
 				>
 					г. Кызыл
 				</Link>
 				<Link
 					className="w-full h-full bg-gray-600 rounded py-2 px-3 text-gray-300 items-center
-                              cursor-pointer select-none peer-checked:bg-gray-800"
+                              cursor-pointer select-none peer-checked:bg-gray-800 z-[1000]"
 					to="/warehouses/2"
 				>
 					г. Ак-Довурак
@@ -51,9 +51,9 @@ const Map: FC<any> = () => {
 				center={[51.8, 94.15]}
 				maxBounds={[[54, 99], [49.4, 88]]}
 
-				zoom={7}
-				maxZoom={13}
-				minZoom={7}
+				zoom={5}
+				maxZoom={20}
+				minZoom={5}
 				zoomControl={false}
 				scrollWheelZoom={true}
 				doubleClickZoom={false}

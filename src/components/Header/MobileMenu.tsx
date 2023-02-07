@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ITopMenu } from "./TopMenu";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
@@ -14,44 +14,48 @@ const MobileMenu = () => {
   }, [menuState])
   return (
     <div>
+
+
       <div>
         <AiOutlineMenu
           onClick={() => dispatch(OpenMenu())}
           className="w-10 h-10"
         />
-      </div>
-      <div
-        className={
-          menuState.isOpen
-            ? "fixed top-0 bottom-0 right-0 sm:w-2/3 xs:w-1/2 bg-blue-900"
-            : "hidden"
-        }
-      >
-        <div
-          className="fixed top-0 bottom-0 left-0 sm:w-1/3 xs:w-1/2 bg-black opacity-70"
+        {/* <div
+          className="fixed top-0 bottom-0 left-0 right-0 sm:w-1/3 xs:w-1/2 bg-black opacity-70"
           onClick={() => dispatch(CloseMenu())}
-        ></div>
-        <div className="fixed top-3 right-3">
-          <AiOutlineClose
-            className="w-10 h-10"
-            onClick={() => dispatch(CloseMenu())}
-          />
-        </div>
-        <div className="w-full h-full flex flex-col justify-start gap-5 text-lg uppercase py-24 px-5">
-          {menuRoutes.map((item: ITopMenu) => {
-            return (
-              <Link
-                key={item.name}
-                to={item.to}
-                onClick={() => dispatch(CloseMenu())}
-              >
-                {item.name}
-              </Link>
-            );
-          })}
+        ></div> */}
+        <div
+          className={
+            menuState.isOpen
+              ? "fixed top-0 bottom-0 right-0 sm:w-2/3 xs:w-1/2 bg-blue-900 mobile__menu"
+              : "hidden"
+          }
+        >
+
+          <div className="fixed top-3 right-3">
+            <AiOutlineClose
+              className="w-10 h-10"
+              onClick={() => dispatch(CloseMenu())}
+            />
+          </div>
+          <div className="w-full h-full flex flex-col justify-start gap-5 text-lg uppercase py-24 px-5">
+            {menuRoutes.map((item: ITopMenu) => {
+              return (
+                <Link
+                  key={item.name}
+                  to={item.to}
+                  onClick={() => dispatch(CloseMenu())}
+                >
+                  {item.name}
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
+
   );
 };
 

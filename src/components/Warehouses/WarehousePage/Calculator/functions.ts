@@ -39,12 +39,12 @@ export function Calculate(
 }
 
 export function CalculateWithoutDelievery(
-  coalPrice: number,
-  quantity: number,
-  coalRemainder: number
+  coalPrice: number | undefined,
+  quantity: number | undefined,
+  coalRemainder: number | undefined
 ): number | string {
-  if (quantity < coalRemainder) {
-    const result = coalPrice * quantity;
+  if (quantity! < coalRemainder!) {
+    const result = coalPrice! * quantity!;
     return result;
   } else {
     return "Запрошенное количество не может быть больше остатка на складе";
