@@ -19,7 +19,7 @@ const RepublicPolygons = () => {
 				})}
 				className="hover:fill-white hover:transition hover:ease-in-out hover:duration-400 outline-none border-none"
 				eventHandlers={{
-					click: () => navigate(`/warehouses/${item.id}`)
+					click: () => navigate(`/regions/${item.id}`)
 				}}
 			>
 				<Tooltip sticky>{item.properties.description}</Tooltip>

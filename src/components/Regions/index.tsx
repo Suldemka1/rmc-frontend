@@ -14,7 +14,8 @@ const RegionWarehouses: FC<any> = (params: any) => {
 						warehouses_count={item?.warehouses?.length}
 					/>
 				);
-			})}
+			})
+			}
 		</div>
 	);
 };

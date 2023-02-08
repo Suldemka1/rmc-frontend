@@ -20,20 +20,22 @@ const RegionWarehouses = () => {
 	return (
 		<StandartLayout localeUrl={`Главная/Регионы/${params.id}`}>
 			<ul className="flex flex-col gap-3">
-
-				{state?.warehouses?.map((item: IWarehouseCard) => {
-					return (
-						<ListItem
-							key={item?.id}
-							id={item?.id}
-							title={item?.title}
-							url={`/warehouses/${item?.id}`}
-							address={item.address}
-							contacts={item.contacts}
-							region={item.region}
-						/>
-					);
-				})}
+				{state?.warehouses?.length === 0 ? <div>В данном регионе нет складов.</div>
+					:
+					state?.warehouses?.map((item: IWarehouseCard) => {
+						return (
+							<ListItem
+								key={item?.id}
+								id={item?.id}
+								title={item?.title}
+								url={`/warehouses/${item?.id}`}
+								address={item.address}
+								contacts={item.contacts}
+								region={item.region}
+							/>
+						);
+					})
+				}
 			</ul>
 		</StandartLayout>
 	);
