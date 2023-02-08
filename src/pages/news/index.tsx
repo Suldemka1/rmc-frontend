@@ -4,7 +4,6 @@ import PostCard from "../../components/Post/PostCard";
 import StandartLayout from "../../layouts/StandartLayout";
 import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
 import {fetchAllPosts} from "../../store/slices/newsSlice/services";
-import { useParams } from 'react-router-dom';
 
 const News = () => {
 	const history = document.referrer

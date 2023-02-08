@@ -12,7 +12,7 @@ interface ICalculateParams {
 }
 
 const Calculator = (params: ICalculateParams) => {
-    const [coalPrice, setCoalPrice] = useState<number| undefined>(undefined)
+    const [coalPrice, setCoalPrice] = useState<number| undefined>(params.coal_price)
     const [quantity, setQuantity] = useState<number | undefined>(0)
     const [coalRemainder, setCoalRemainder] = useState<number>(params.coal_products[0].coal_remainder)
     const [result, setResult] = useState<number | string | undefined>(undefined)
@@ -68,9 +68,9 @@ const Calculator = (params: ICalculateParams) => {
 
 
             <div className="w-1/2 [&>h1]:text-white [&>h1]:text-xl">
-                <h1>{Validate(resultWithoutDelievery, quantity, coalRemainder) ? `${resultWithoutDelievery} при самовывозе` : null} </h1>
-                <h1>{Validate(result, quantity, coalRemainder) ? `${result} при доставке по адресу` : null}</h1>
-                <h1>{CalcDelieveryDay(params.average_delievery_time)}</h1>
+                {result && <h1>{Validate(resultWithoutDelievery, quantity, coalRemainder) ? `${resultWithoutDelievery} при самовывозе` : null} </h1>}
+                {resultWithoutDelievery && <h1>{Validate(result, quantity, coalRemainder) ? `${result} при доставке по адресу` : null}</h1>}
+                {result && <h1>{CalcDelieveryDay(params.average_delievery_time)}</h1>}
             </div>
         </div>
     );

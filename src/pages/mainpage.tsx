@@ -30,7 +30,7 @@ const Mainpage = () => {
             <Map />
             <div className="">
                 <div className="py-3">
-                    <Link to="/news"><a className="text-2xl font-semibold tracking-wider cursor-pointer hover:text-blue-900">Все новости</a></Link>
+                    <Link to="/news" className="text-2xl font-semibold tracking-wider cursor-pointer hover:text-blue-900">Все новости</Link>
                 </div>
 
                 <Media queries={{

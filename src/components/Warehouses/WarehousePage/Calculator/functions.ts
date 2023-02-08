@@ -1,3 +1,5 @@
+import { time } from "console";
+
 class CoalServiceCalculator {
   coalPrice: number = 0;
   quantity: number = 0;
@@ -70,10 +72,19 @@ export function Validate(
 }
 
 export function CalcDelieveryDay(average_delivery_time: number) {
-  let date = new Date();
-  date.setDate(date.getDate() + average_delivery_time);
-  date.toLocaleDateString();
+  // let date = new Date();
+  // console.log('date')
+  // console.log(date.getTime())
+  // date.setDate(date.getDate() + average_delivery_time);
+  // date.toLocaleDateString();
 
-  let string = `ориентировочное время доставки ${date.toLocaleDateString()}`;
-  return string;
+  // let string = `ориентировочное время доставки ${date.toLocaleDateString()}`;
+  // return string;
+  let timestamp = new Date().getTime();
+  timestamp = Math.floor(timestamp) + average_delivery_time*24*3600*1000;
+  let date = new Date(timestamp)
+  
+  let string = `ориентировочное время доставки ${date.toLocaleDateString()}`
+
+  return string
 }
