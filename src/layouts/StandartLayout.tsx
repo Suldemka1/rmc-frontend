@@ -5,8 +5,10 @@ import Sidebar from "../components/Sidebar";
 import { IPage } from "../models/IChildren";
 import WelcomePopup from '../components/WelcomePopup';
 import Breadcrumbs from '../components/Breadcrumbs';
+import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 
 const StandartLayout: FC<IPage> = ({ children, localeUrl }: IPage) => {
+
     return (
         <div>
             {/* <WelcomePopup /> */}

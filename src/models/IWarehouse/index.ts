@@ -16,6 +16,12 @@ export interface IProduct {
   coal_remainder: number;
 }
 
+export interface IAdditionalService {
+  id: number;
+  title: string;
+  price: number;
+}
+
 export interface IPaymentOption {
   option: string;
 }
@@ -41,4 +47,5 @@ export interface IWarehouse extends IWarehouseCard {
   brief: IBrief;
   payment_options: [IPaymentOption];
   coal_products: [IProduct];
+  additional_services: [IAdditionalService] | undefined;
 }

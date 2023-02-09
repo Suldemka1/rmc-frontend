@@ -6,7 +6,7 @@ import Calculator from "../../components/Warehouses/WarehousePage/Calculator";
 import WarehousePageFootnotes from "../../components/Warehouses/WarehousePage/WarehousePageFootnotes";
 import StandartLayout from "../../layouts/StandartLayout";
 import { useParams } from "react-router-dom";
-import { IProduct, IWarehouse } from "../../models/IWarehouse";
+import { IAdditionalService, IProduct, IWarehouse } from "../../models/IWarehouse";
 
 const WarehousePage = () => {
   const params = useParams();
@@ -60,6 +60,13 @@ const WarehousePage = () => {
         coal_price: 2774,
         coal_remainder: 100
       }
+    ],
+    additional_services: [
+      {
+        id: 0,
+        title: "",
+        price: 50
+      }
     ]
   });
 
@@ -88,28 +95,35 @@ const WarehousePage = () => {
           <div className="w-3/5 rounded border-2 border-black">
             <h1 className="text-xl font-semibold  py-3 px-2">Прейскурант цен на уголь</h1>
             <ul className="">
-              {state?.coal_products?.map((item: IProduct) => {
-                return (
-                  <li key={item.id} className="grid grid-cols-2 odd:text-white odd:bg-blue-500 text-xl px-2 py-3">
-                    <p>{item.name}</p>
-                    <p>{item.coal_price}₽</p>
-                  </li>
-                )
-
-              })
-
-                // <li className="grid grid-cols-2 odd:text-white odd:bg-blue-500 text-xl px-2 py-3">
-                //   <p>Каа-Хемский</p>
-                //   <p>2734₽</p>
-                // </li>
-                // <li className="grid grid-cols-2 odd:text-white odd:bg-blue-500 text-xl px-2 py-3">
-                //   <p>Каа-Хемский</p>
-                //   <p>2734₽</p>
-                // </li>
+              {
+                state?.coal_products?.map((item: IProduct) => {
+                  return (
+                    <li key={item.id} className="grid grid-cols-2 odd:text-white odd:bg-blue-500 text-xl px-2 py-3">
+                      <p>{item.name}</p>
+                      <p>{item.coal_price}₽</p>
+                    </li>
+                  )
+                })
               }
-
             </ul>
           </div>
+          <div className="w-3/5 rounded border-2 border-black">
+            <h1 className="text-xl font-semibold  py-3 px-2">Дополнительные услуги</h1>
+            <ul className="">
+              {
+                state?.additional_services?.map((item: IAdditionalService) => {
+                  return (
+                    <li key={item.id} className="grid grid-cols-2 odd:text-white odd:bg-blue-500 text-xl px-2 py-3">
+                      <p>{item.title}</p>
+                      <p>{item.price}₽</p>
+                    </li>
+                  )
+                })
+              }
+            </ul>
+          </div>
+
+
 
           <div className="w-3/5 rounded border-2 border-black">
             <h1 className="text-xl font-semibold py-3 px-2">Способы оплаты</h1>

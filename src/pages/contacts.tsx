@@ -1,7 +1,6 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import StandartLayout from "../layouts/StandartLayout";
 import ContactsItem from "../components/Contacts/ContactsItem";
-import WarehouseContactItem from "../components/Contacts/WarehouseContactItem";
 import PageName from "../components/PageName";
 
 const Contacts: FC = () => {
@@ -21,6 +20,14 @@ const Contacts: FC = () => {
                         }} />
                     <ContactsItem
                         title="Справочная служба дежурного/диспетчера службы по тарифам"
+                        subtitle="Фамилия Имя Отчество"
+                        phone={"83942200000"}
+                        schedule={{
+                            start_time: "9:00",
+                            end_time: "18:00"
+                        }} />
+                    <ContactsItem
+                        title="Справочная служба дежурного/диспетчера Центра управления регионо"
                         subtitle="Фамилия Имя Отчество"
                         phone={"83942200000"}
                         schedule={{
