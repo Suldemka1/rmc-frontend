@@ -7,6 +7,7 @@ import React, { FC, useCallback, useEffect } from "react";
 import { fetchAllWarehouses, fetchWarehousesByKozhuunName } from "../../store/slices/warehouseSlice/services";
 import { fetchAllRegions, fetchRegionByName } from "../../store/slices/regionsSlice/services";
 import { IRegion } from "../../models/IRegion";
+import { RiLoader5Fill } from 'react-icons/ri'
 
 interface IChecked {
   map: boolean;
@@ -51,7 +52,7 @@ const Warehouses: FC = () => {
         return <RegionWarehouses regions={regions?.regions?.data} />
       }
       else {
-        return 'loading...'
+        return <RiLoader5Fill className="animate-spin h-5 w-5" />
       }
     }
     else {
@@ -65,7 +66,7 @@ const Warehouses: FC = () => {
         return <List warehouses={warehouses?.warehouses?.data} />
       }
       else {
-        return 'loading...'
+        return <RiLoader5Fill className="animate-spin h-5 w-5" />
       }
     }
     else {

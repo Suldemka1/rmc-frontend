@@ -8,8 +8,6 @@ const TopMenu = () => {
     const warehouses = useAppSelector((state) => state.warehouses)
     const dispatch = useAppDispatch()
 
-
-
     useEffect(() => {
         dispatch(fetchAllWarehouses())
         console.log(warehouses)

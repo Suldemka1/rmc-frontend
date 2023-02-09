@@ -16,7 +16,7 @@ const StandartLayout: FC<IPage> = ({ children, localeUrl }: IPage) => {
                 <Header />
                 <div className="container mx-auto">
                     {
-                        document.location.href != process.env.URL
+                        document.location.href != process.env.REACT_APP_URL
                             ?
                             <Breadcrumbs localeUrl={localeUrl} />
                             :
@@ -24,12 +24,12 @@ const StandartLayout: FC<IPage> = ({ children, localeUrl }: IPage) => {
                     }
 
                     <div className="flex flex-row gap-5">
-                        <div className="sm:w-full xs:w-full md:w-full lg:w-4/5 py-3">
+                        <div className="sm:w-full xs:w-full md:w-full lg:w-5/5 py-3">
                             {children}
                         </div>
-                        <div className="sm:hidden md:hidden lg:block sm:w-0 xs:w-0 md:w-0 lg:w-1/5 sm:p-0 py-3 pl-3">
+                        {/* <div className="sm:hidden md:hidden lg:block sm:w-0 xs:w-0 md:w-0 lg:w-1/5 sm:p-0 py-3 pl-3">
                             <Sidebar />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <Footer />

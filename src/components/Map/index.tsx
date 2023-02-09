@@ -26,7 +26,7 @@ const Map: FC<any> = () => {
 	}, []);
 
 	return (
-		<div className="sm:w-full h-fit md:border-2 border-black rounded">
+		<div className="sm:w-full h-fit rounded">
 			<div
 				className="absolute flex flex-col gap-3 text-center mt-5 ml-10"
 				style={{ zIndex: 400 }}
@@ -51,7 +51,7 @@ const Map: FC<any> = () => {
 				center={[51.8, 94.15]}
 				maxBounds={[[54, 99], [49.4, 88]]}
 
-				zoom={5}
+				zoom={7}
 				maxZoom={20}
 				minZoom={5}
 				zoomControl={false}
@@ -59,7 +59,7 @@ const Map: FC<any> = () => {
 				doubleClickZoom={false}
 				attributionControl={false}
 				// dragging={false}
-				className="min-h-[600px]"
+				className="min-h-[620px]"
 			>
 				<TileLayer
 					attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
