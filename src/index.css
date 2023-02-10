@@ -164,6 +164,7 @@
 .index-page-slider {
   margin-bottom: 90px;
 }
+
 .index-page-slider .item {
   background: #f4f7fb;
   position: relative;
@@ -175,12 +176,15 @@
   width: 48%;
   height: 100%;
   z-index: 4;
+  background-image: url("../public/cur1.png");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 .index-page-slider .item .image img {
   display: none;
 }
 .index-page-slider .item .text {
-  padding: 168px 0 190px;
+  padding: 10% 0;
   width: 48%;
   color: #3b4357;
 }

@@ -9,24 +9,30 @@ const Slider: FC = () => {
       {[1].map((item, index) => {
         return (
           <div key={index} className="item"  >
-            <div className="image" style={{ backgroundImage: `url('/rmc.jpg')`, objectFit: "cover", backgroundRepeat: "no-repeat" }}>
+            <div className="image">
               {/* <img src='/tuva1.svg' /> */}
             </div>
-            <div className="wrap min-h-[700px]">
-              <div className="text">
+            <div className="wrap">
+              <div className="text select-none">
                 <div className="name">
-                  Уважаемые посетители сайта
+                  Уважаемые гости
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <Link to="/warehouses">Перейти</Link>
+                <p>Центр управления регионом Республики Тыва сообщает, что одной из главных общественно-значимых тем на территории республики
+                  остается тема доступности каменного угля. Безусловно, это связано с началом
+                  отопительного сезона, однако основные причины возросшей обращаемости -
+                  рост цены на уголь, а также отсутствие доступной и актуальной информации в
+                  открытых источниках о пунктах реализации (топливных складах), наличии в них
+                  угля и объемах, фактических ценах, стоимости доставки, дополнительных услугах.</p>
+
+                <Link to="/warehouses" className="rounded-md bg-blue-600 outline-0 shadow-none text-white text-xl uppercase py-3 px-4 hover:bg-blue-900">Перейти</Link>
               </div>
             </div>
           </div>
         )
       })}
-      <div className="item" style={{ backgroundImage: `url('/gosuslugi.svg')` }} >
-        <Map />
-      </div>
+      {/* <div className="item" style={{ backgroundImage: `url('/gosuslugi.svg')` }} >
+         <Map />
+      </div> */}
     </div>
   );
 };
