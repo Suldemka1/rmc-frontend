@@ -13,7 +13,7 @@ const Contacts: FC = () => {
                     <ContactsItem
                         title="Справочная служба дежурного/диспетчера министерства топлива и энергетики"
                         subtitle="Фамилия Имя Отчество"
-                        phone={"83942200000"}
+                        phone="83942200000"
                         schedule={{
                             start_time: "9:00",
                             end_time: "18:00"
@@ -36,9 +36,6 @@ const Contacts: FC = () => {
                         }} />
                 </div>
             </div>
-
-
-
         </StandartLayout>
     );
 };

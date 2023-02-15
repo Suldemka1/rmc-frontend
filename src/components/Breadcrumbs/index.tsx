@@ -58,7 +58,7 @@ const Breadcrumbs: FC<any> = ({ params, localeUrl }: any) => {
   }, [window.location.href])
 
   return (
-    <div className="flex flex-row items-center gap-2 py-3">
+    <div className="container mx-auto flex flex-row items-center gap-2 py-3">
       {renderBreadcrumbs(urlName, urlPath)}
     </div>
   )
