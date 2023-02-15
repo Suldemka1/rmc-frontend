@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { fetchAllWarehouses } from "../../store/slices/warehouseSlice/services";
+import SearchField from "./SearchField";
 
 const TopMenu = () => {
     const [dropdown, setDropdown] = useState<boolean>(false)
@@ -10,7 +11,6 @@ const TopMenu = () => {
 
     useEffect(() => {
         dispatch(fetchAllWarehouses())
-        console.log(warehouses)
     }, [])
 
     return (
@@ -36,13 +36,15 @@ const TopMenu = () => {
                         контакты
                     </Link>
                 </li>
+
+                <SearchField />
             </menu>
             <div className={`${dropdown ? "block" : "hidden"} absolute left-0 right-0 mt-6`}>
                 <div className="bg-blue-500 absolute left-0 right-0 z-10 origin-top-right text-white rounded-md shadow-lg">
                     <div className="container mx-auto flex gap-3 flex-wrap justify-start py-3">
                         {
                             warehouses?.warehouses?.data?.map((item: any) => {
-                                return <Link to={`/warehouses/${item.id}`}
+                                return <Link key={item.id} to={`/warehouses/${item.id}`}
                                     className="block text-md text-white rounded-lg hover:bg-gray-50 hover:text-gray-700 px-2 py-2"
                                 >
                                     {item.title}

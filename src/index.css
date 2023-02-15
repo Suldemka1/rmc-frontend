@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+.body {
+  min-height: 100vh;
+}
+
+.wrap {
+  margin: 0 auto;
+  max-width: 1176px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 15px;
+}
+
 .custom-marker-cluster {
   background: #ffffff;
   border: 4px solid #282c34;
@@ -25,8 +38,7 @@
   background: cornflowerblue;
   color: white;
   border-radius: 5px;
-
-  padding: 10px 15px;
+  padding: .5em;
 }
 
 .input {
