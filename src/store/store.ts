@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import mapSliceReducer from "./slices/mapSlice";
-import regionsSliceReducer from './slices/regionsSlice'
+import regionsSliceReducer from "./slices/regionsSlice";
 import warehouseSliceReducer from "./slices/warehouseSlice";
 import menuSliceReducer from "./slices/menuSlice";
 import newsSliceReducer from "./slices/newsSlice";
+import newsSearchReducer from "./slices/newsSearchSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     warehouses: warehouseSliceReducer,
     menu: menuSliceReducer,
     news: newsSliceReducer,
+    newsSearch: newsSearchReducer,
   },
 });
 

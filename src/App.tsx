@@ -11,6 +11,7 @@ import Warehouses from "./pages/warehouses";
 import NewsPage from "./pages/news/NewsPage";
 import RegionWarehouses from "./pages/warehouses/region-warehouses";
 import WarehousePage from "./pages/warehouses/warehouse-page";
+import Search from "./pages/search";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -26,6 +27,8 @@ const router = createBrowserRouter(
       {/* <Route path="/warehouses/:id/:id" element={<WarehousePage />} /> */}
 
       <Route path="/contacts" element={<Contacts />} />
+
+      <Route path="/search" element={<Search />} />
     </Route>
   )
 );

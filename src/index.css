@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.body {
+  min-height: 100vh;
+}
+
 .wrap {
   margin: 0 auto;
   max-width: 1176px;
@@ -34,8 +38,7 @@
   background: cornflowerblue;
   color: white;
   border-radius: 5px;
-
-  padding: 10px 15px;
+  padding: .5em;
 }
 
 .input {
