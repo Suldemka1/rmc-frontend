@@ -10,43 +10,24 @@ const StandartLayout: FC<IPage> = ({ children, localeUrl }: IPage) => {
     console.log(document.location.href);
   }, []);
   return (
-    <>
+    <div className='min-h-screen relative flex flex-col'>
       <Header />
-      {document.location.href != process.env.REACT_APP_URL ? (
-        <Breadcrumbs localeUrl={localeUrl} />
-      ) : (
-        <></>
-      )}
+      <div className="container mx-auto flex-1">
+        {
+          document.location.href != process.env.REACT_APP_URL
+            ?
+            <Breadcrumbs localeUrl={localeUrl} />
+            :
+            null
+        }
 
-      <div className="sm:w-full xs:w-full md:w-full lg:w-5/5">{children}</div>
-      <Footer />
-    </>
-  );
-    return (
-
-        <div className='min-h-screen relative flex flex-col'>
-            <Header />
-            <div className="container mx-auto flex-1">
-                {
-                    document.location.href != process.env.REACT_APP_URL
-                        ?
-                        <Breadcrumbs localeUrl={localeUrl} />
-                        :
-                        null
-                }
-
-                <div className="flex flex-row gap-5">
-                    <div className="sm:w-full xs:w-full md:w-full lg:w-5/5 py-3">
-                        {children}
-                    </div>
-                    {/* <div className="sm:hidden md:hidden lg:block sm:w-0 xs:w-0 md:w-0 lg:w-1/5 sm:p-0 py-3 pl-3">
-                            <Sidebar />
-                        </div> */}
-                </div>
-            </div>
-            <Footer />
+        <div className="flex flex-col sm:w-full xs:w-full md:w-full">
+          {children}
         </div>
-    );
+      </div>
+      <Footer />
+    </div>
+  );
 };
 
 export default StandartLayout;

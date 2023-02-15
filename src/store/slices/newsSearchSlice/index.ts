@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IPostCard } from "../../../models/IPost";
+import { IPostCard } from "../../../models/IPost/IPostCard";
 import { fetchPosts } from "./services";
 
 export interface ISearchInitialState {

@@ -6,7 +6,7 @@ import parser from 'html-react-parser'
 
 const MainSlider: FC<ISliders> = (params: ISliders) => {
   return (
-    <div className="index-page-slider w-screen sticky left-0 right-0 pb-10">
+    <div className="index-page-slider w-full sticky left-0 right-0 pb-10">
       <Slider adaptiveHeight>
         {params.slider.map((item, index) => {
           return (

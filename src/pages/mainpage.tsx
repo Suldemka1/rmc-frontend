@@ -15,6 +15,8 @@ import {
   ISliders,
 } from "../components/Sidebar/Banner";
 import MainSlider from "../components/Slider/index";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 interface IMainpage {
   pinned_links: [IBanner];
@@ -63,7 +65,8 @@ const Mainpage = () => {
   }, []);
 
   return (
-    <StandartLayout localeUrl="Главная">
+    <>
+      <Header />
       <MainSlider slider={state.slider} />
       <div className="container mx-auto">
         <div className="flex flex-row gap-5">
@@ -76,7 +79,8 @@ const Mainpage = () => {
           </div>
         </div>
       </div>
-    </StandartLayout>
+      <Footer />
+    </>
   );
 };
 

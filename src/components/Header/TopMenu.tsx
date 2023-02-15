@@ -29,7 +29,7 @@ const TopMenu = () => {
                 }
 
                 <li className="group inline-flex cursor-pointer" onClick={() => setDropdown(!dropdown)}>
-                    Угольные склады Республики Тыва
+                    Угольные склады
                 </li>
                 <li>
                     <Link to="/contacts">
