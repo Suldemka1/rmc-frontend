@@ -12,7 +12,7 @@ interface ICalculateParams {
 }
 
 const Calculator = (params: ICalculateParams) => {
-    const [coalPrice, setCoalPrice] = useState<number| undefined>(params.coal_price)
+    const [coalPrice, setCoalPrice] = useState<number | undefined>(params.coal_price)
     const [quantity, setQuantity] = useState<number | undefined>(0)
     const [coalRemainder, setCoalRemainder] = useState<number>(params.coal_products[0].coal_remainder)
     const [result, setResult] = useState<number | string | undefined>(undefined)
@@ -56,6 +56,14 @@ const Calculator = (params: ICalculateParams) => {
                                 </option>
                             )
                         })}
+                    </select>
+                    <select>
+                        <option>Кызыл</option>
+                        <option>Туран</option>
+                    </select>
+                    <select>
+                        <option>Самовывоз</option>
+                        <option>Доставка</option>
                     </select>
                 </div>
                 <button
