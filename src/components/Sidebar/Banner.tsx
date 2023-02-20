@@ -24,10 +24,10 @@ export interface IBanner {
 }
 
 const Banner = (params: IBanner) => (
-  <a href={params.url} className="hover:animate-pulse cursor-pointer">
+  <a href={params.url} className="hover:animate-pulse cursor-pointer flex items-center justify-center ">
     <img
       src={String(process.env.REACT_APP_BASEURL! + params?.image?.url)}
-      className="w-full"
+      className="w-full object-cover"
     />
   </a>
 );

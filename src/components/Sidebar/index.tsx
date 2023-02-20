@@ -5,6 +5,7 @@ const Sidebar = (params: IBanners) => {
     <div className="sm:hidden md:hidden lg:flex flex-col gap-5">
       {params.pinned_links.map((item: IBanner) => (
         <Banner
+          key={item.id}
           id={item.id}
           title={item.title}
           image={item.image}

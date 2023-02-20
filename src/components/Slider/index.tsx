@@ -15,7 +15,7 @@ const MainSlider: FC<ISliders> = (params: ISliders) => {
               <div className="container mx-auto">
                 <div className="text select-none">
                   <div className="name">{item.title}</div>
-                  <p>{parser(item.content)}</p>
+                  <div>{parser(item.content)}</div>
 
                   <Link
                     to="/warehouses"
