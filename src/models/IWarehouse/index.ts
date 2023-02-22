@@ -32,6 +32,19 @@ export interface ISchedule {
   time?: string | null | undefined;
 }
 
+export interface IDeliveryOption {
+  id: number;
+  options: string;
+}
+
+export interface IDelivery {
+  id: number;
+  destination: string;
+  price: number;
+  average_time: number;
+  options: [IDeliveryOption];
+}
+
 export interface IWarehouseCard {
   id: number;
   title: string;
@@ -48,4 +61,5 @@ export interface IWarehouse extends IWarehouseCard {
   payment_options: [IPaymentOption];
   coal_products: [IProduct];
   additional_services: [IAdditionalService] | undefined;
+  delivery: [IDelivery] | undefined;
 }

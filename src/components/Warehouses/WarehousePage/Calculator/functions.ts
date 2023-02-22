@@ -31,9 +31,6 @@ export function Calculate(
   if (quantity < coalRemainder) {
     const result =
       Math.ceil(quantity / 3) * delieveryPrice + coalPrice * quantity;
-    console.log(
-      Math.ceil(quantity / 3) * delieveryPrice + coalPrice * quantity
-    );
     return result;
   } else {
     return "Запрошенное количество не может быть больше остатка на складе";
@@ -81,10 +78,10 @@ export function CalcDelieveryDay(average_delivery_time: number) {
   // let string = `ориентировочное время доставки ${date.toLocaleDateString()}`;
   // return string;
   let timestamp = new Date().getTime();
-  timestamp = Math.floor(timestamp) + average_delivery_time*24*3600*1000;
-  let date = new Date(timestamp)
-  
-  let string = `ориентировочное время доставки ${date.toLocaleDateString()}`
+  timestamp = Math.floor(timestamp) + average_delivery_time * 24 * 3600 * 1000;
+  let date = new Date(timestamp);
 
-  return string
+  let string = `ориентировочное время доставки ${date.toLocaleDateString()}`;
+
+  return string;
 }

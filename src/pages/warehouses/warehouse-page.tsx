@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import PageName from "../../components/PageName";
-import BriefDescription from "../../components/Warehouses/WarehousePage/BriefDescription";
-import WarahousePageContacts from "../../components/Warehouses/WarehousePage/WarahousePageContacts";
+import BriefDescription from "../../components/Warehouses/WarehousePage/Brief";
+import WarahousePageContacts from "../../components/Warehouses/WarehousePage/Contacts";
 import Calculator from "../../components/Warehouses/WarehousePage/Calculator";
-import WarehousePageFootnotes from "../../components/Warehouses/WarehousePage/WarehousePageFootnotes";
+import WarehousePageFootnotes from "../../components/Warehouses/WarehousePage/Footnotes";
 import StandartLayout from "../../layouts/StandartLayout";
 import { useParams } from "react-router-dom";
 import { IAdditionalService, IProduct, IWarehouse } from "../../models/IWarehouse";
@@ -67,13 +67,27 @@ const WarehousePage = () => {
         title: "",
         price: 50
       }
+    ],
+    delivery: [
+      {
+        id: 0,
+        destination: "",
+        price: 0,
+        average_time: 0,
+        options: [
+          {
+            id: 0,
+            options: ""
+          }
+        ]
+      }
     ]
   });
 
   useEffect(() => {
     setTimeout(() => {
       fetch(
-        `${process.env.REACT_APP_BASEURL}/api/warehouses/${params.id}?populate=*`
+        `${process.env.REACT_APP_BASEURL}/api/warehouses/${params.id}?populate[0]=delivery.options&populate[1]=brief&populate[2]=contacts&populate[3]=region&populate[4]=payment_options&populate[5]=address&populate[6]=schedule&populate[7]=coal_products`
       )
         .then((res) => res.json())
         .then((res) => setState(res.data));
@@ -123,8 +137,6 @@ const WarehousePage = () => {
             </ul>
           </div>
 
-
-
           <div className="w-3/5 rounded border-2 border-black">
             <h1 className="text-xl font-semibold py-3 px-2">Способы оплаты</h1>
             <div className="">
@@ -155,7 +167,9 @@ const WarehousePage = () => {
         coal_remainder={state.brief.coal_remainder}
         coal_products={state.coal_products}
         delievery_price={state.brief.devivery_cost}
-        average_delievery_time={state.brief.average_delivery_time} />
+        average_delievery_time={state.brief.average_delivery_time}
+        delivery={state!.delivery!}
+      />
       <WarehousePageFootnotes />
     </StandartLayout>
   );

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { IProduct } from '../../../../models/IWarehouse';
+import React, { DetailedHTMLProps, useState } from 'react';
+import { IDelivery, IProduct } from '../../../../models/IWarehouse';
 import { CalcDelieveryDay, Calculate, CalculateWithoutDelievery, Validate } from './functions';
 
 interface ICalculateParams {
@@ -9,10 +9,15 @@ interface ICalculateParams {
     coal_products: [IProduct],
     delievery_price: number,
     average_delievery_time: number,
+    delivery: [IDelivery]
 }
 
 const Calculator = (params: ICalculateParams) => {
-    const [coalPrice, setCoalPrice] = useState<number | undefined>(params.coal_price)
+    const [coalPrice, setCoalPrice] = useState<number>(params.coal_products[0].coal_price)
+    const [destination, setDestination] = useState<string | undefined>(params.delivery[0].destination)
+    const [selectedDestination, setSelectedDestination] = useState<any>(JSON.stringify(params.delivery[0]))
+    const [deliveryOption, setDeliveryOption] = useState<string | undefined>(params.delivery[0].options[0].options)
+    const [deliveryPrice, setDeliveryPrice] = useState<number>(400)
     const [quantity, setQuantity] = useState<number | undefined>(0)
     const [coalRemainder, setCoalRemainder] = useState<number>(params.coal_products[0].coal_remainder)
     const [result, setResult] = useState<number | string | undefined>(undefined)
@@ -20,7 +25,7 @@ const Calculator = (params: ICalculateParams) => {
 
     function handleClick() {
         if (quantity) {
-            setResult(Calculate(coalPrice!, quantity, params.delievery_price, 100));
+            setResult(Calculate(coalPrice, quantity, deliveryPrice, coalRemainder));
             setResultWithoutDelievery(CalculateWithoutDelievery(coalPrice!, quantity, coalRemainder));
         }
         else {
@@ -43,8 +48,7 @@ const Calculator = (params: ICalculateParams) => {
                         className="input"
                     />
                 </div>
-                <div>
-                    {/* <h2 className='text-2xl text-gray-100 py-5'>Выберите тип угля</h2> */}
+                <div className='flex flex-col gap-3'>
                     <select
                         className='input'
                         onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setCoalPrice(Number(e.target.value))}
@@ -57,13 +61,31 @@ const Calculator = (params: ICalculateParams) => {
                             )
                         })}
                     </select>
-                    <select>
-                        <option>Кызыл</option>
-                        <option>Туран</option>
+
+                    <select
+                        className='input'
+                        defaultValue={selectedDestination}
+                        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                            setDeliveryPrice(Number(e.target.value))
+                            setSelectedDestination(JSON.parse(e.target.value))
+                            setDeliveryPrice(JSON.parse(e.target.value).price)
+                        }}
+                    >
+                        {
+                            params?.delivery?.map((item, index) => <option key={index} value={JSON.stringify(item)}>{item?.destination}</option>)
+                        }
                     </select>
-                    <select>
-                        <option>Самовывоз</option>
-                        <option>Доставка</option>
+
+
+                    <select
+                        className='input'
+                        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+
+                        }}>
+                        {
+                            selectedDestination?.options?.map((item: any) =>
+                                <option key={item.id} value={item?.price}>{item?.options}</option>)
+                        }
                     </select>
                 </div>
                 <button
@@ -80,7 +102,7 @@ const Calculator = (params: ICalculateParams) => {
                 {resultWithoutDelievery && <h1>{Validate(result, quantity, coalRemainder) ? `${result} при доставке по адресу` : null}</h1>}
                 {result && <h1>{CalcDelieveryDay(params.average_delievery_time)}</h1>}
             </div>
-        </div>
+        </div >
     );
 };
 
