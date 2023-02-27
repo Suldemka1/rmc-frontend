@@ -12,8 +12,8 @@ export interface IBrief {
 export interface IProduct {
   id: number;
   name: String;
-  coal_price: number;
-  coal_remainder: number;
+  price: number;
+  remainder: number;
 }
 
 export interface IAdditionalService {
@@ -27,9 +27,9 @@ export interface IPaymentOption {
 }
 
 export interface ISchedule {
-  id?: number;
-  day?: string | null | undefined;
-  time?: string | null | undefined;
+  id: number;
+  day: string;
+  time: string;
 }
 
 export interface IDeliveryOption {
@@ -55,11 +55,11 @@ export interface IWarehouseCard {
 }
 
 export interface IWarehouse extends IWarehouseCard {
-  schedule: [ISchedule] | undefined | null;
+  schedule: [ISchedule];
   owner: string;
   brief: IBrief;
   payment_options: [IPaymentOption];
   coal_products: [IProduct];
-  additional_services: [IAdditionalService] | undefined;
-  delivery: [IDelivery] | undefined;
+  additional_services: [IAdditionalService];
+  delivery: [IDelivery];
 }

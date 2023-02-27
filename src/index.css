@@ -42,7 +42,8 @@
 }
 
 .input {
-  width: 100%;
+  width: 40%;
+  height: fit-content;
   border: cornflowerblue 2px solid;
   border-radius: 7px;
 

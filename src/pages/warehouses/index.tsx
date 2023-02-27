@@ -48,7 +48,7 @@ const Warehouses: FC = () => {
         <option value="">Все</option>
         {regions != undefined &&
           regions?.regions?.data?.map((item: IRegion) => {
-            return <option value={item.title}>{item.title}</option>;
+            return <option value={item?.title}>{item?.title}</option>;
           })}
       </select>
     );
@@ -68,7 +68,7 @@ const Warehouses: FC = () => {
 
   function displayWarehousesCards() {
     if (state.list) {
-      if (warehouses.status != "pending" && warehouses.status != "rejected") {
+      if (warehouses.status != "pending" && warehouses?.status != "rejected") {
         return <List warehouses={warehouses?.warehouses?.data} />;
       } else {
         return <RiLoader5Fill className="animate-spin h-5 w-5" />;

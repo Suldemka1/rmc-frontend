@@ -1,109 +1,125 @@
-import React, { DetailedHTMLProps, useState } from 'react';
-import { IDelivery, IProduct } from '../../../../models/IWarehouse';
-import { CalcDelieveryDay, Calculate, CalculateWithoutDelievery, Validate } from './functions';
+import React, { useEffect, useState } from "react";
+import { IDelivery, IProduct } from "../../../../models/IWarehouse";
+import {
+  CalcDeliveryDay,
+  Calculate,
+  CalculateWithoutDelievery,
+  Validate,
+} from "./functions";
 
 interface ICalculateParams {
-    coal_price: number,
-    quantity: number | undefined,
-    coal_remainder: number,
-    coal_products: [IProduct],
-    delievery_price: number,
-    average_delievery_time: number,
-    delivery: [IDelivery]
+  coal_products: [IProduct];
+  delivery: [IDelivery];
 }
 
 const Calculator = (params: ICalculateParams) => {
-    const [coalPrice, setCoalPrice] = useState<number>(params.coal_products[0].coal_price)
-    const [destination, setDestination] = useState<string | undefined>(params.delivery[0].destination)
-    const [selectedDestination, setSelectedDestination] = useState<any>(JSON.stringify(params.delivery[0]))
-    const [deliveryOption, setDeliveryOption] = useState<string | undefined>(params.delivery[0].options[0].options)
-    const [deliveryPrice, setDeliveryPrice] = useState<number>(400)
-    const [quantity, setQuantity] = useState<number | undefined>(0)
-    const [coalRemainder, setCoalRemainder] = useState<number>(params.coal_products[0].coal_remainder)
-    const [result, setResult] = useState<number | string | undefined>(undefined)
-    const [resultWithoutDelievery, setResultWithoutDelievery] = useState<number | string | undefined>(undefined)
+  const [coalPrice, setCoalPrice] = useState<number | undefined>(undefined);
+  const [destination, setDestination] = useState<string | undefined>(undefined);
+  const [selectedDestination, setSelectedDestination] = useState<
+    string | undefined
+  >(undefined);
+  const [deliveryPrice, setDeliveryPrice] = useState<number | undefined>(
+    undefined
+  );
+  const [quantity, setQuantity] = useState<number | undefined>(undefined);
+  const [coalRemainder, setCoalRemainder] = useState<number | undefined>(
+    undefined
+  );
+  const [result, setResult] = useState<number | string | undefined>(undefined);
 
-    function handleClick() {
-        if (quantity) {
-            setResult(Calculate(coalPrice, quantity, deliveryPrice, coalRemainder));
-            setResultWithoutDelievery(CalculateWithoutDelievery(coalPrice!, quantity, coalRemainder));
-        }
-        else {
-            setQuantity(undefined)
-        }
+  useEffect(() => {
+    setCoalPrice(params.coal_products[0].price);
+    setCoalRemainder(params.coal_products[0].remainder);
+    setDeliveryPrice(params.delivery[0].price);
+    setSelectedDestination(JSON.stringify(params.delivery[0]));
+    setDestination(params.delivery[0].destination);
+  }, []);
+
+  function handleClick() {
+    console.log(quantity);
+    console.log(deliveryPrice);
+    console.log(coalPrice);
+    console.log(coalRemainder);
+
+    if (
+      typeof quantity === "number" &&
+      typeof deliveryPrice === "number" &&
+      typeof coalPrice === "number" &&
+      typeof coalRemainder === "number"
+    ) {
+      setResult(Calculate(coalPrice, quantity, deliveryPrice, coalRemainder));
+      console.log(Calculate(coalPrice, quantity, deliveryPrice, coalRemainder));
     }
+    console.log(result);
+  }
 
-    return (
-        <div className="w-4/6 flex flex-col gap-5 bg-gray-800 border border-black rounded p-5 my-5">
-            <h1 className="text-2xl text-gray-100">
-                Калькулятор рассчета стоимости угля
-            </h1>
+  return (
+    <div className="w-4/6 flex flex-col gap-5 bg-gray-800 border border-black rounded p-5 my-5">
+      <h1 className="text-2xl text-gray-100">
+        Калькулятор рассчета стоимости угля
+      </h1>
 
-            <div className="flex flex-row justify-between gap-5">
-                <div className="flex flex-col gap-1 w-1/2">
-                    <input
-                        type="number"
-                        placeholder="Необходимое количество в тоннах"
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuantity(Number(e.target.value))}
-                        className="input"
-                    />
-                </div>
-                <div className='flex flex-col gap-3'>
-                    <select
-                        className='input'
-                        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setCoalPrice(Number(e.target.value))}
-                    >
-                        {params?.coal_products?.map((item: IProduct) => {
-                            return (
-                                <option key={item.id} value={item.coal_price}>
-                                    {item.name}
-                                </option>
-                            )
-                        })}
-                    </select>
+      <div className="flex flex-col justify-between gap-5">
+        <input
+          type="number"
+          placeholder="Необходимое количество в тоннах"
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setQuantity(Number(e.target.value))
+          }
+          className="input"
+        />
+        <select
+          className="input"
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+            setCoalPrice(Number(e.target.value))
+          }
+        >
+          {params?.coal_products?.map((item: IProduct) => {
+            return (
+              <option key={item?.id} value={item?.price}>
+                {item?.name}
+              </option>
+            );
+          })}
+        </select>
+        {/* место доставки */}
+        <select
+          className="input"
+          defaultValue={selectedDestination}
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+            setSelectedDestination(JSON.parse(e.target.value));
+            const price = JSON.parse(e.target.value)?.price;
+            console.log(price);
+            setDeliveryPrice(price.price);
+          }}
+        >
+          {params?.delivery?.map((item, index) => (
+            <option key={index} value={JSON.stringify(item)}>
+              {item?.destination}
+            </option>
+          ))}
+        </select>
+        <select
+          className="input"
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {}}
+        >
+          <option value="Доставка">Доставка</option>
+          <option value="Самовывоз">Самовывоз</option>
+        </select>
 
-                    <select
-                        className='input'
-                        defaultValue={selectedDestination}
-                        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-                            setDeliveryPrice(Number(e.target.value))
-                            setSelectedDestination(JSON.parse(e.target.value))
-                            setDeliveryPrice(JSON.parse(e.target.value).price)
-                        }}
-                    >
-                        {
-                            params?.delivery?.map((item, index) => <option key={index} value={JSON.stringify(item)}>{item?.destination}</option>)
-                        }
-                    </select>
+        <div className="flex flex-col gap-3 w-2/5"></div>
+        <button className="button" onClick={handleClick}>
+          Рассчитать
+        </button>
+      </div>
 
-
-                    <select
-                        className='input'
-                        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-
-                        }}>
-                        {
-                            selectedDestination?.options?.map((item: any) =>
-                                <option key={item.id} value={item?.price}>{item?.options}</option>)
-                        }
-                    </select>
-                </div>
-                <button
-                    className="button"
-                    onClick={handleClick}
-                >
-                    Рассчитать
-                </button>
-            </div>
-
-
-            <div className="w-1/2 [&>h1]:text-white [&>h1]:text-xl">
-                {result && <h1>{Validate(resultWithoutDelievery, quantity, coalRemainder) ? `${resultWithoutDelievery} при самовывозе` : null} </h1>}
-                {resultWithoutDelievery && <h1>{Validate(result, quantity, coalRemainder) ? `${result} при доставке по адресу` : null}</h1>}
-                {result && <h1>{CalcDelieveryDay(params.average_delievery_time)}</h1>}
-            </div>
-        </div >
-    );
+      <div className="w-1/2 [&>h1]:text-white [&>h1]:text-xl">
+        {result && <h1>{result} при самовывозе`</h1>}
+        {result && <h1>{`${result} при доставке по адресу`}</h1>}
+        {result && <h1>{CalcDeliveryDay(params.delivery[0].average_time)}</h1>}
+      </div>
+    </div>
+  );
 };
 
 export default Calculator;
