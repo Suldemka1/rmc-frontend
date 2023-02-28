@@ -42,7 +42,7 @@ export interface IDelivery {
   destination: string;
   price: number;
   average_time: number;
-  options: [IDeliveryOption];
+  // options: [IDeliveryOption];
 }
 
 export interface IWarehouseCard {

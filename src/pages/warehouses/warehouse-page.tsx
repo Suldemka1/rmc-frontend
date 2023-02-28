@@ -9,174 +9,111 @@ import { useParams } from "react-router-dom";
 import {
   IAdditionalService,
   IProduct,
-  IWarehouse,
 } from "../../models/IWarehouse";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
+import { fetchWarehouse } from "../../store/slices/warehouseSlice/services";
 
 const WarehousePage = () => {
   const params = useParams();
-  // const [state, setState] = useState<IWarehouse | undefined>(undefined);
-  const [state, setState] = useState<IWarehouse>({
-    id: 0,
-    title: "загрузка",
-    owner: "загрузка",
-    url: "загрузка",
-    brief: {
-      lowest_coal_cost: 0,
-      devivery_cost: 0,
-      average_delivery_time: 0,
-      coal_remainder: 0,
-    },
-    contacts: [
-      {
-        id: 0,
-        phone: "загрузка",
-        email: "загрузка",
-        webSiteUrl: "загрузка",
-      },
-    ],
-    region: {
-      id: 0,
-      title: "загрузка",
-    },
-    address: {
-      code: "загрузка",
-      region: "загрузка",
-      street: "загрузка",
-      house: "загрузка",
-      note: "загрузка",
-    },
-    schedule: [
-      {
-        id: 0,
-        day: "загрузка",
-        time: "загрузка"
-      }
-    ],
-    payment_options: [
-      {
-        option: "загрузка",
-      },
-    ],
-    coal_products: [
-      {
-        id: 0,
-        name: "загрузка",
-        price: 2774,
-        remainder: 100
-      }
-    ],
-    additional_services: [
-      {
-        id: 0,
-        title: "",
-        price: 50
-      }
-    ],
-    delivery: [
-      {
-        id: 0,
-        destination: "",
-        price: 0,
-        average_time: 0,
-        options: [
-          {
-            id: 0,
-            options: ""
-          }
-        ]
-      }
-    ]
-  });
+  const state = useAppSelector((state) => state.singleWarehouse)
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
-    setTimeout(() => {
-      fetch(
-        `${process.env.REACT_APP_BASEURL}/api/warehouses/${params.id}?populate[0]=delivery.options&populate[1]=brief&populate[2]=contacts&populate[3]=region&populate[4]=payment_options&populate[5]=address&populate[6]=schedule&populate[7]=coal_products`
-      )
-        .then((res) => res.json())
-        .then((res) => setState(res.data));
-    }, 500);
+    dispatch(fetchWarehouse(params.id))
   }, []);
+
+  useEffect(() => {
+    setTimeout(() => console.log(state.data?.delivery), 1000)
+
+  }, [])
 
   return (
     <StandartLayout localeUrl={`Главная/Склады/${params.id}`}>
-      <PageName title={state?.title} />
+      <PageName title={state?.data?.title} />
+      {
+        state.status != "fulfilled" ? <div>loading</div> : <>
 
-      <div className="flex flex-col gap-10">
-        <div className="flex flex-row justify-between gap-5">
-          <BriefDescription brief={state?.brief} />
-        </div>
-
-        <div className="flex flex-col gap-3 text-lg">
-          <h1 className="text-2xl">Услуги и оплата</h1>
-          <div className="w-3/5 rounded border-2 border-black">
-            <h1 className="text-xl font-semibold  py-3 px-2">
-              Прейскурант цен на уголь
-            </h1>
-            <ul className="">
-              {state?.coal_products?.map((item: IProduct) => {
-                return (
-                  <li
-                    key={item.id}
-                    className="grid grid-cols-2 odd:text-white odd:bg-blue-500 text-xl px-2 py-3"
-                  >
-                    <p>{item.name}</p>
-                    <p>{item.price}₽</p>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-          <div className="w-3/5 rounded border-2 border-black">
-            <h1 className="text-xl font-semibold  py-3 px-2">
-              Дополнительные услуги
-            </h1>
-            <ul className="">
-              {state?.additional_services?.map((item: IAdditionalService) => {
-                return (
-                  <li
-                    key={item.id}
-                    className="grid grid-cols-2 odd:text-white odd:bg-blue-500 text-xl px-2 py-3"
-                  >
-                    <p>{item.title}</p>
-                    <p>{item.price}₽</p>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-
-          <div className="w-3/5 rounded border-2 border-black">
-            <h1 className="text-xl font-semibold py-3 px-2">Способы оплаты</h1>
-            <div className="">
-              <ul>
-                {state?.payment_options?.map((item, index) => {
-                  return (
-                    <li
-                      key={item.option}
-                      className="grid grid-cols-2 odd:text-white odd:bg-blue-500 text-xl px-2 py-3"
-                    >
-                      {item.option}
-                    </li>
-                  );
-                })}
-              </ul>
+          <div className="flex flex-col gap-10">
+            <div className="flex flex-row justify-between gap-5">
+              <BriefDescription brief={state?.data?.brief} />
             </div>
+
+            <div className="flex flex-col gap-3 text-lg">
+              <h1 className="text-2xl">Услуги и оплата</h1>
+              <div className="w-3/5 rounded border-2 border-black">
+                <h1 className="text-xl font-semibold  py-3 px-2">
+                  Прейскурант цен на уголь
+                </h1>
+                <ul className="">
+                  {state?.data?.coal_products?.map((item: IProduct) => {
+                    return (
+                      <li
+                        key={item.id}
+                        className="grid grid-cols-2 odd:text-white odd:bg-blue-500 text-xl px-2 py-3"
+                      >
+                        <p>{item.name}</p>
+                        <p>{item.price}₽</p>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+              <div className="w-3/5 rounded border-2 border-black">
+                <h1 className="text-xl font-semibold  py-3 px-2">
+                  Дополнительные услуги
+                </h1>
+                <ul className="">
+                  {state?.data?.additional_services?.map((item: IAdditionalService) => {
+                    return (
+                      <li
+                        key={item.id}
+                        className="grid grid-cols-2 odd:text-white odd:bg-blue-500 text-xl px-2 py-3"
+                      >
+                        <p>{item.title}</p>
+                        <p>{item.price}₽</p>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+
+              <div className="w-3/5 rounded border-2 border-black">
+                <h1 className="text-xl font-semibold py-3 px-2">Способы оплаты</h1>
+                <div className="">
+                  <ul>
+                    {state?.data?.payment_options?.map((item, index) => {
+                      return (
+                        <li
+                          key={item.option}
+                          className="grid grid-cols-2 odd:text-white odd:bg-blue-500 text-xl px-2 py-3"
+                        >
+                          {item.option}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <WarahousePageContacts
+              contacts={state?.data?.contacts[0]}
+              region={state?.data?.region}
+              address={state?.data?.address}
+              schedule={state?.data?.schedule}
+            />
           </div>
-        </div>
 
-        <WarahousePageContacts
-          contacts={state?.contacts[0]}
-          region={state?.region}
-          address={state?.address}
-          schedule={state?.schedule}
-        />
-      </div>
+          { // @ts-ignore
+            <Calculator
+              coal_products={state?.data?.coal_products!}
+              delivery={state?.data?.delivery!}
+            />
+          }
 
-      <Calculator
-        coal_products={state?.coal_products}
-        delivery={state?.delivery}
-      />
+        </>
+      }
+
       <WarehousePageFootnotes />
     </StandartLayout>
   );

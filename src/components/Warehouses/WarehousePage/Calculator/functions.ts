@@ -1,35 +1,63 @@
 export function Calculate(
   coalPrice: number,
   quantity: number,
-  delieveryPrice: number,
-  coalRemainder: number
+  deliveryPrice: number,
+  coalRemainder: number,
+  isDelivery: boolean
 ): number | string {
-  if (quantity) {
-    const result =
-      Math.ceil(quantity / 3) * delieveryPrice + coalPrice * quantity;
-      console.log('result')
-      console.log(result)
-    return result;
-  } else {
-    console.log('error')
-    return "Запрошенное количество не может быть больше остатка на складе";
+  let result;
+  try {
+    if (
+      typeof quantity === "number" &&
+      typeof coalRemainder === "number" &&
+      typeof coalPrice === "number" &&
+      isDelivery === true &&
+      coalRemainder > quantity
+    ) {
+      console.log('1')
+      let flights = Math.ceil(quantity / 3) * deliveryPrice;
+      console.log(`цена доставки` + deliveryPrice)
+      result = Math.ceil(quantity / 3) * deliveryPrice + coalPrice * quantity; //количество рейсов + количество угля на цену
+      return result;
+    } else if (
+      typeof quantity === "number" &&
+      typeof coalRemainder === "number" &&
+      typeof coalPrice === "number" &&
+      isDelivery === false &&
+      coalRemainder > quantity
+    ) {
+      console.log('2')
+      result = coalPrice * quantity; //количество рейсов + количество угля на цену
+      return result;
+    } else {
+      return "Запрошенное количество не может быть больше остатка на складе";
+    }
+  } catch (e) {
+    console.error(e);
   }
+
+  return "ошибка";
 }
 
 export function CalculateWithoutDelievery(
-  coalPrice: number | undefined,
-  quantity: number | undefined,
-  coalRemainder: number | undefined
-): number | string {
-  if (quantity! < coalRemainder!) {
-    const result = coalPrice! * quantity!;
-    return result;
-  } else {
-    return "Запрошенное количество не может быть больше остатка на складе";
-  }
+  coalPrice: number,
+  quantity: number,
+  coalRemainder: number
+): number | string | undefined {
+  if (
+    typeof quantity === "number" &&
+    typeof coalRemainder === "number" &&
+    typeof coalPrice === "number"
+  )
+    if (quantity < coalRemainder) {
+      const result = coalPrice * quantity;
+      return result;
+    } else {
+      return "Запрошенное количество не может быть больше остатка на складе";
+    }
 }
 
-export function Validate( 
+export function Validate(
   result: number | string | undefined,
   quantity: number | undefined,
   remainder: number
