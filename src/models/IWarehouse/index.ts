@@ -42,7 +42,6 @@ export interface IDelivery {
   destination: string;
   price: number;
   average_time: number;
-  // options: [IDeliveryOption];
 }
 
 export interface IWarehouseCard {
@@ -59,7 +58,7 @@ export interface IWarehouse extends IWarehouseCard {
   owner: string;
   brief: IBrief;
   payment_options: [IPaymentOption];
-  coal_products: [IProduct];
+  coal_products: [IProduct] | undefined;
   additional_services: [IAdditionalService];
-  delivery: [IDelivery];
+  delivery: [IDelivery] | undefined;
 }

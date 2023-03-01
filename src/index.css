@@ -38,11 +38,11 @@
   background: cornflowerblue;
   color: white;
   border-radius: 5px;
-  padding: .5em;
+  padding: 0.5em;
 }
 
 .input {
-  width: 40%;
+  width: 100%;
   height: fit-content;
   border: cornflowerblue 2px solid;
   border-radius: 7px;
@@ -198,7 +198,6 @@
   line-height: 160%;
   margin: 1rem 0 2.25rem;
 }
-
 
 .index-page-slider .slick-prev {
   display: none !important;
