@@ -26,7 +26,7 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-col">
-          
+
           <div className="flex flex-row gap-5">
             <div className="flex flex-col gap-2">
               <h1 className="text-xl">Министерство топлива и энергетики</h1>

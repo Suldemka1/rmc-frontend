@@ -27,7 +27,6 @@ const newsSearchSlice = createSlice({
   extraReducers: {
     [fetchPosts.fulfilled]: (state: any, action: { payload: any }) => {
       state.posts.data = action.payload;
-      console.log(state);
     },
   },
 });

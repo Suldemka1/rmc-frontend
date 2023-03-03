@@ -1,18 +1,14 @@
-import StandartLayout from "../layouts/StandartLayout";
 import Map from "../components/Map";
 import { useCallback, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import { fetchLastPosts } from "../store/slices/newsSlice/services";
 import { fetchAllWarehouses } from "../store/slices/warehouseSlice/services";
 import { fetchAllRegions } from "../store/slices/regionsSlice/services";
-import Slider from "../components/Slider/index";
 import Sidebar from "../components/Sidebar";
 import LastPosts from "../components/Post/LastPosts";
 import {
   IBanner,
-  IBanners,
   ISlider,
-  ISliders,
 } from "../components/Sidebar/Banner";
 import MainSlider from "../components/Slider/index";
 import Header from "../components/Header";

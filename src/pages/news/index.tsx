@@ -38,7 +38,7 @@ const News = () => {
               />
             ))}
           </div>
-          <div className="w-1/5">{/* <Sidebar banners={}/> */}</div>
+          {/* <div className="w-1/5"><Sidebar banners={}/></div> */}
         </div>
       </div>
     </StandartLayout>

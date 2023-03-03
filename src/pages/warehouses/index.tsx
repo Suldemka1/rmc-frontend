@@ -48,7 +48,7 @@ const Warehouses: FC = () => {
         <option value="">Все</option>
         {regions != undefined &&
           regions?.regions?.data?.map((item: IRegion) => {
-            return <option value={item?.title}>{item?.title}</option>;
+            return <option key={item.title} value={item?.title}>{item?.title}</option>;
           })}
       </select>
     );

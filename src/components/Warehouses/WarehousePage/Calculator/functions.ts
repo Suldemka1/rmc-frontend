@@ -14,9 +14,7 @@ export function Calculate(
       isDelivery === true &&
       coalRemainder > quantity
     ) {
-      console.log('1')
       let flights = Math.ceil(quantity / 3) * deliveryPrice;
-      console.log(`цена доставки` + deliveryPrice)
       result = Math.ceil(quantity / 3) * deliveryPrice + coalPrice * quantity; //количество рейсов + количество угля на цену
       return result;
     } else if (
@@ -26,7 +24,6 @@ export function Calculate(
       isDelivery === false &&
       coalRemainder > quantity
     ) {
-      console.log('2')
       result = coalPrice * quantity; //количество рейсов + количество угля на цену
       return result;
     } else {

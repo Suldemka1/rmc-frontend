@@ -6,9 +6,6 @@ import { IPage } from "../models/IChildren";
 import Breadcrumbs from "../components/Breadcrumbs";
 
 const StandartLayout: FC<IPage> = ({ children, localeUrl }: IPage) => {
-  useEffect(() => {
-    console.log(document.location.href);
-  }, []);
   return (
     <div className='min-h-screen relative flex flex-col'>
       <Header />

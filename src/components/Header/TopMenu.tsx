@@ -47,6 +47,7 @@ const TopMenu = () => {
                             warehouses?.warehouses?.data?.map((item: IWarehouseCard) => {
                                 return <Link key={item.id} to={`/warehouses/${item.id}`}
                                     className="block text-md text-white rounded-lg hover:bg-gray-50 hover:text-gray-700 px-2 py-2"
+                                    onClick={() => setDropdown(false)}
                                 >
                                     {item.title}
                                 </Link>

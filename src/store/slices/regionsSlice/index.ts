@@ -24,7 +24,6 @@ const regionsSlice = createSlice({
     ) => {
       state.regions = action.payload;
       state.status = "fulfilled";
-      console.log(state);
     },
     [fetchAllRegions.rejected]: (state, action) => {
       state.status = "error";
@@ -32,7 +31,6 @@ const regionsSlice = createSlice({
 
     [fetchRegionByName.pending]: (state, action) => {
       state.status = "pending";
-      console.log(state.status);
     },
     [fetchRegionByName.fulfilled]: (
       state,
